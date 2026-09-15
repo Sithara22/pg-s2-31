@@ -1,20 +1,18 @@
 # SiteSeer 2B — Semantic Search
 
-This folder contains the semantic search prototype for SiteSeer Project 2B.
+This folder contains the semantic search and retrieval prototype for SiteSeer Project 2B.
 
-It converts learner questions and SiteSeer Knowledge Objects (KOs) into embeddings and uses vector similarity to retrieve the most relevant KOs.
+It converts learner questions and SiteSeer Knowledge Objects (KOs) into embeddings and retrieves the most relevant KOs using vector similarity and optional metadata filters.
 
 ## Current Technology
 
 - **Embedding model:** `sentence-transformers/all-MiniLM-L6-v2`
 - **Embedding size:** 384 dimensions
 - **Vector database:** PostgreSQL + pgvector
-- **Similarity method:** Cosine similarity
+- **Similarity:** Cosine similarity
 - **Current data:** Synthetic development EKOs
 
-MiniLM was selected as the current development model after comparison with `all-mpnet-base-v2`. Both achieved the same retrieval results on the current synthetic test set, while MiniLM was smaller and faster.
-
-The model will be re-evaluated when real published SiteSeer EKOs are available.
+MiniLM was selected as the development model after comparison with `all-mpnet-base-v2`. The model will be re-evaluated when real published SiteSeer EKOs are available.
 
 ## How It Works
 
@@ -25,18 +23,27 @@ MiniLM embeddings
        ↓
 PostgreSQL + pgvector
        ↓
-Learner question
+Learner question + optional metadata
        ↓
-Question embedding
+Filter eligible KOs
        ↓
 Cosine similarity search
        ↓
 Top-K Knowledge Objects
 ```
 
+Supported metadata filters:
+
+- Stage
+- Trade
+- Jurisdiction
+- Learner level
+
+Metadata filtering restricts which KOs are eligible before semantic similarity ranking is performed.
+
 ## Setup
 
-Activate the project environment:
+Activate the environment:
 
 ```bash
 conda activate siteseer-2b
@@ -57,7 +64,7 @@ DB_HOST=localhost
 DB_PORT=5432
 ```
 
-Make sure PostgreSQL is running and the `siteseer_2b` database has the pgvector extension enabled:
+Make sure PostgreSQL is running and pgvector is enabled:
 
 ```sql
 CREATE EXTENSION IF NOT EXISTS vector;
@@ -71,7 +78,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 python backend/semantic_search/generate_embeddings.py
 ```
 
-### 2. Load the embeddings into pgvector
+### 2. Load embeddings into pgvector
 
 ```bash
 python backend/semantic_search/index_pgvector.py
@@ -83,42 +90,66 @@ python backend/semantic_search/index_pgvector.py
 python backend/semantic_search/search_pgvector.py
 ```
 
-Example question:
+Enter a learner question and optionally provide metadata filters.
+
+Example:
 
 ```text
-How do I stop a newly installed wall frame from moving?
+Question: How do I stop a newly installed wall frame from moving?
+
+Stage: Wall Framing
+Trade: Carpentry
+Jurisdiction: SA
+Learner level: Foundation
 ```
 
-The system returns the Top-K Knowledge Objects that are semantically most relevant to the question.
+The system filters eligible KOs and then ranks them by semantic similarity.
 
 ## Evaluation
 
-Run the retrieval test:
+Run retrieval evaluation:
 
 ```bash
 python backend/semantic_search/evaluate_retrieval.py
 ```
 
-Compare embedding models:
+The current development test set contains:
+
+- 10 answerable questions
+- 6 metadata-filtered retrieval tests
+- 5 insufficient-corpus questions reserved for later refusal testing
+
+Current synthetic evaluation result:
+
+```text
+Hit@1: 10/10 (100%)
+Hit@3: 10/10 (100%)
+```
+
+These results are based on a small synthetic dataset and do **not** represent final SiteSeer system accuracy.
+
+To compare embedding models:
 
 ```bash
 python backend/semantic_search/compare_embedding_models.py
 ```
 
-The current evaluation uses synthetic data, so the results are for development purposes only.
-
 ## Important
 
 The current dataset contains **synthetic development EKOs** and is not authoritative construction advice.
 
-In the final system, Project 2B should index only knowledge approved for AI use by Project 2A. The pgvector database is a derived search index; Project 2A remains the authoritative knowledge source.
+In the final system, Project 2B should index only knowledge approved for AI use by Project 2A.
 
-## Status
+Project 2A remains the authoritative knowledge source. The Project 2B pgvector database is a derived and rebuildable search index.
+
+## Current Status
 
 - Data preprocessing: ✅
 - Embedding generation: ✅
 - PostgreSQL + pgvector: ✅
-- Basic semantic search: ✅
+- Semantic search: ✅
 - Embedding model evaluation: ✅
-- Metadata filtering: ⬜ Next
+- Metadata filtering: ✅
+- Retrieval test dataset: ✅
+- Answerability / refusal: ⬜ Next
 - RAG / AI Tutor: ⬜ Later
