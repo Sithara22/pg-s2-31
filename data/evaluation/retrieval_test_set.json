@@ -1,0 +1,92 @@
+[
+  {
+    "test_id": "RET-001",
+    "question": "What should be checked before a concrete slab is poured?",
+    "expected_ko_id": "MOCK-KO-001",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-002",
+    "question": "How do I stop a newly installed wall frame from moving?",
+    "expected_ko_id": "MOCK-KO-002",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-003",
+    "question": "What should be inspected before a wall frame is covered up?",
+    "expected_ko_id": "MOCK-KO-003",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-004",
+    "question": "What should be considered when setting out roof framing?",
+    "expected_ko_id": "MOCK-KO-004",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-005",
+    "question": "What should be inspected for drainage underneath a slab?",
+    "expected_ko_id": "MOCK-KO-005",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-006",
+    "question": "What needs to be considered when framing walls in wet areas?",
+    "expected_ko_id": "MOCK-KO-006",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-007",
+    "question": "Why does the order of construction work matter before something is concealed?",
+    "expected_ko_id": "MOCK-KO-007",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-008",
+    "question": "What is important when setting out a wall frame?",
+    "expected_ko_id": "MOCK-KO-008",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-009",
+    "question": "What evidence should be captured before construction work is covered?",
+    "expected_ko_id": "MOCK-KO-009",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-010",
+    "question": "How can one construction decision depend on another decision?",
+    "expected_ko_id": "MOCK-KO-010",
+    "expected_answerability": "answerable"
+  },
+  {
+    "test_id": "RET-011",
+    "question": "How should solar panels be installed on a house?",
+    "expected_ko_id": null,
+    "expected_answerability": "insufficient_corpus"
+  },
+  {
+    "test_id": "RET-012",
+    "question": "What type of air conditioner should be installed in a bedroom?",
+    "expected_ko_id": null,
+    "expected_answerability": "insufficient_corpus"
+  },
+  {
+    "test_id": "RET-013",
+    "question": "How do I calculate the energy efficiency rating of a building?",
+    "expected_ko_id": null,
+    "expected_answerability": "insufficient_corpus"
+  },
+  {
+    "test_id": "RET-014",
+    "question": "What colour should the exterior walls of a house be painted?",
+    "expected_ko_id": null,
+    "expected_answerability": "insufficient_corpus"
+  },
+  {
+    "test_id": "RET-015",
+    "question": "How should a swimming pool filtration system be maintained?",
+    "expected_ko_id": null,
+    "expected_answerability": "insufficient_corpus"
+  }
+]
