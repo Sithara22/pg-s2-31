@@ -52,7 +52,7 @@ def get_database_connection():
 
 
 # ---------------------------------------------------------
-# pgvector semantic search
+# Semantic search with metadata filtering
 # ---------------------------------------------------------
 
 def semantic_search_pgvector(
@@ -60,9 +60,16 @@ def semantic_search_pgvector(
     model: SentenceTransformer,
     connection,
     top_k: int = 3,
+    stage: str | None = None,
+    trade: str | None = None,
+    jurisdiction: str | None = None,
+    learner_level: str | None = None,
 ) -> list[dict]:
     """
-    Search the pgvector knowledge index using cosine distance.
+    Perform semantic search with optional metadata filters.
+
+    Metadata filters restrict the candidate Knowledge Objects
+    before pgvector ranks them by cosine similarity.
     """
 
     query = query.strip()
@@ -70,36 +77,74 @@ def semantic_search_pgvector(
     if not query:
         raise ValueError("Search query cannot be empty.")
 
-    # Convert the learner question into a vector using
-    # the SAME embedding model used for the EKO corpus.
+    # Convert learner question into an embedding.
     query_embedding = model.encode(
         query,
         convert_to_numpy=True,
         normalize_embeddings=True,
     )
 
-    with connection.cursor() as cursor:
+    # -----------------------------------------------------
+    # Build optional SQL metadata filters
+    # -----------------------------------------------------
 
+    conditions = []
+    filter_values = []
+
+    if stage:
+        conditions.append("stage = %s")
+        filter_values.append(stage)
+
+    if trade:
+        conditions.append("trade = %s")
+        filter_values.append(trade)
+
+    if jurisdiction:
+        conditions.append("jurisdiction = %s")
+        filter_values.append(jurisdiction)
+
+    if learner_level:
+        conditions.append("learner_level = %s")
+        filter_values.append(learner_level)
+
+    where_clause = ""
+
+    if conditions:
+        where_clause = (
+            "WHERE " + " AND ".join(conditions)
+        )
+
+    # -----------------------------------------------------
+    # Vector search
+    # -----------------------------------------------------
+
+    sql = f"""
+        SELECT
+            ko_id,
+            title,
+            stage,
+            trade,
+            jurisdiction,
+            learner_level,
+            version,
+            1 - (embedding <=> %s) AS similarity
+        FROM knowledge_embeddings
+        {where_clause}
+        ORDER BY embedding <=> %s
+        LIMIT %s;
+    """
+
+    parameters = [
+        query_embedding,
+        *filter_values,
+        query_embedding,
+        top_k,
+    ]
+
+    with connection.cursor() as cursor:
         cursor.execute(
-            """
-            SELECT
-                ko_id,
-                title,
-                stage,
-                trade,
-                jurisdiction,
-                learner_level,
-                version,
-                1 - (embedding <=> %s) AS similarity
-            FROM knowledge_embeddings
-            ORDER BY embedding <=> %s
-            LIMIT %s;
-            """,
-            (
-                query_embedding,
-                query_embedding,
-                top_k,
-            ),
+            sql,
+            parameters,
         )
 
         rows = cursor.fetchall()
@@ -130,6 +175,7 @@ def semantic_search_pgvector(
 def display_results(
     query: str,
     results: list[dict],
+    filters: dict,
 ) -> None:
 
     print()
@@ -138,21 +184,64 @@ def display_results(
     print(query)
 
     print()
-    print("Top pgvector Semantic Search Results")
-    print("------------------------------------")
+    print("Metadata Filters")
+    print("----------------")
+
+    active_filters = {
+        key: value
+        for key, value in filters.items()
+        if value
+    }
+
+    if active_filters:
+        for key, value in active_filters.items():
+            print(f"{key}: {value}")
+    else:
+        print("None")
+
+    print()
+    print("Top Semantic Search Results")
+    print("---------------------------")
 
     if not results:
-        print("No results found.")
+        print(
+            "No Knowledge Objects matched "
+            "the selected metadata filters."
+        )
         return
 
-    for rank, result in enumerate(results, start=1):
-
+    for rank, result in enumerate(
+        results,
+        start=1,
+    ):
+        print()
         print(
             f"{rank}. "
             f"{result['ko_id']} | "
             f"{result['title']} | "
             f"score={result['score']:.4f}"
         )
+
+        print(
+            f"   Stage: {result['stage']} | "
+            f"Trade: {result['trade']} | "
+            f"Jurisdiction: {result['jurisdiction']} | "
+            f"Learner level: {result['learner_level']}"
+        )
+
+
+# ---------------------------------------------------------
+# Optional input helper
+# ---------------------------------------------------------
+
+def optional_input(prompt: str) -> str | None:
+    """
+    Blank input means that the metadata filter is not used.
+    """
+
+    value = input(prompt).strip()
+
+    return value if value else None
 
 
 # ---------------------------------------------------------
@@ -161,8 +250,14 @@ def display_results(
 
 def main() -> None:
 
-    print("SiteSeer 2B - pgvector Semantic Search")
-    print("--------------------------------------")
+    print(
+        "SiteSeer 2B - Semantic Search "
+        "with Metadata Filtering"
+    )
+
+    print(
+        "-----------------------------------------------"
+    )
 
     print(f"Loading embedding model: {MODEL_NAME}")
 
@@ -175,18 +270,42 @@ def main() -> None:
 
         query = input(
             "\nEnter a learner question: "
+        ).strip()
+
+        print()
+        print(
+            "Optional metadata filters "
+            "(press Enter to skip)"
         )
+        print("--------------------------------")
+
+        stage = optional_input("Stage: ")
+        trade = optional_input("Trade: ")
+        jurisdiction = optional_input("Jurisdiction: ")
+        learner_level = optional_input("Learner level: ")
+
+        filters = {
+            "stage": stage,
+            "trade": trade,
+            "jurisdiction": jurisdiction,
+            "learner_level": learner_level,
+        }
 
         results = semantic_search_pgvector(
             query=query,
             model=model,
             connection=connection,
             top_k=3,
+            stage=stage,
+            trade=trade,
+            jurisdiction=jurisdiction,
+            learner_level=learner_level,
         )
 
         display_results(
             query=query,
             results=results,
+            filters=filters,
         )
 
     finally:
