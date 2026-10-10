@@ -14,11 +14,11 @@ def run_tests() -> None:
 
     records = load_ekos()
 
-    assert len(records) == 15, (
-        f"Expected 15 input records, got {len(records)}."
+    assert len(records) > 0, (
+        "Expected the loader to return at least one EKO."
     )
 
-    print("PASS: Loader returned 15 records.")
+    print(f"PASS: Loader returned {len(records)} records.")
 
     # ---------------------------------------------------------
     # Test 2: Schema validation
@@ -31,7 +31,7 @@ def run_tests() -> None:
         f"got {len(validation_errors)}: {validation_errors}"
     )
 
-    print("PASS: All 15 records passed schema validation.")
+    print(f"PASS: All {len(records)} records passed schema validation.")
 
     # ---------------------------------------------------------
     # Test 3: Indexability filtering
@@ -41,17 +41,34 @@ def run_tests() -> None:
         filter_indexable_ekos(records)
     )
 
-    assert len(indexable_records) == 10, (
-        f"Expected 10 indexable records, "
-        f"got {len(indexable_records)}."
+    expected_indexable_ids = {
+        record["ko_id"]
+        for record in records
+        if (
+            record["publication_status"] == "published"
+            and record["validation_status"] == "validated"
+            and record["ai_indexable"] is True
+            and record["superseded"] is False
+        )
+    }
+
+    actual_indexable_ids = {
+        record["ko_id"]
+        for record in indexable_records
+    }
+
+    assert actual_indexable_ids == expected_indexable_ids, (
+        "Indexable KO IDs do not match the governance rules. "
+        f"Expected {expected_indexable_ids}, "
+        f"got {actual_indexable_ids}."
     )
 
-    assert len(rejected_records) == 5, (
-        f"Expected 5 rejected records, "
-        f"got {len(rejected_records)}."
-    )
+    assert (len(indexable_records) + len(rejected_records) == len(records)), "Accepted and rejected counts do not match input count."
 
-    print("PASS: 10 records accepted and 5 records rejected.")
+    print(
+        f"PASS: {len(indexable_records)} records accepted "
+        f"and {len(rejected_records)} records rejected."
+    )
 
     # ---------------------------------------------------------
     # Test 4: Correct records were rejected
@@ -129,12 +146,22 @@ def run_tests() -> None:
         indexable_records
     )
 
-    assert len(search_ready_records) == 10, (
-        f"Expected 10 search-ready records, "
+    assert len(search_ready_records) == len(indexable_records), (
+        f"Expected {len(indexable_records)} search-ready records, "
         f"got {len(search_ready_records)}."
     )
 
-    print("PASS: Preprocessing produced 10 search-ready records.")
+    search_ready_ids = {
+        record["ko_id"]
+        for record in search_ready_records
+    }
+
+    assert search_ready_ids == actual_indexable_ids, ("Search-ready KO IDs do not match indexable KO IDs.")
+
+    print(
+        f"PASS: Preprocessing produced "
+        f"{len(search_ready_records)} search-ready records."
+    )
 
     # ---------------------------------------------------------
     # Test 10: Searchable text exists

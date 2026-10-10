@@ -72,8 +72,7 @@ def get_database_connection():
 
 def load_ekos() -> list[dict]:
     """
-    Load search-ready EKOs produced by the preprocessing
-    pipeline.
+    Load search-ready EKOs produced by preprocessing.
     """
 
     if not DATA_FILE.exists():
@@ -98,7 +97,7 @@ def load_ekos() -> list[dict]:
 
 def load_embeddings():
     """
-    Load the MiniLM embeddings and corresponding KO IDs.
+    Load MiniLM embeddings and their KO identifiers.
     """
 
     if not EMBEDDINGS_FILE.exists():
@@ -106,10 +105,10 @@ def load_embeddings():
             f"Embedding file not found: {EMBEDDINGS_FILE}"
         )
 
-    data = np.load(EMBEDDINGS_FILE)
+    with np.load(EMBEDDINGS_FILE, allow_pickle=False) as data:
 
-    ko_ids = data["ko_ids"]
-    embeddings = data["embeddings"]
+        ko_ids = data["ko_ids"].copy()
+        embeddings = data["embeddings"].copy()
 
     if embeddings.ndim != 2:
         raise ValueError(
@@ -118,16 +117,94 @@ def load_embeddings():
 
     if embeddings.shape[1] != EMBEDDING_DIMENSION:
         raise ValueError(
-            f"Expected {EMBEDDING_DIMENSION}-dimensional embeddings, "
-            f"but found {embeddings.shape[1]} dimensions."
+            f"Expected {EMBEDDING_DIMENSION} dimensions, "
+            f"found {embeddings.shape[1]}."
         )
 
     if len(ko_ids) != embeddings.shape[0]:
         raise ValueError(
-            "Number of KO IDs does not match number of embeddings."
+            "Number of KO IDs does not match embeddings."
         )
 
+    if not np.isfinite(embeddings).all():
+        raise ValueError("Embeddings contain NaN or infinite values.")
+
     return ko_ids, embeddings
+
+
+# ---------------------------------------------------------
+# Validate dataset and embedding alignment
+# ---------------------------------------------------------
+
+def validate_index_inputs(
+    records: list[dict],
+    ko_ids: np.ndarray,
+    embeddings: np.ndarray,
+) -> None:
+    """
+    Confirm that every search-ready EKO has exactly
+    one corresponding embedding before modifying the DB.
+    """
+
+    if not records:
+        raise ValueError(
+            "Search-ready dataset is empty. "
+            "Refusing to refresh the index."
+        )
+
+    record_ids = [record["ko_id"] for record in records]
+
+    embedding_ids = [str(ko_id) for ko_id in ko_ids]
+
+    if len(record_ids) != len(set(record_ids)):
+        raise ValueError(
+            "Duplicate KO IDs found in search-ready data."
+        )
+
+    if len(embedding_ids) != len(set(embedding_ids)):
+        raise ValueError(
+            "Duplicate KO IDs found in embedding data."
+        )
+
+    record_id_set = set(record_ids)
+    embedding_id_set = set(embedding_ids)
+
+    if record_id_set != embedding_id_set:
+
+        missing_embeddings = sorted(
+            record_id_set - embedding_id_set
+        )
+
+        unexpected_embeddings = sorted(
+            embedding_id_set - record_id_set
+        )
+
+        raise ValueError(
+            "Search-ready EKOs and embeddings do not match. "
+            f"Missing embeddings: {missing_embeddings}. "
+            f"Unexpected embeddings: {unexpected_embeddings}."
+        )
+
+    if embeddings.shape[0] != len(records):
+        raise ValueError(
+            "Embedding count does not match EKO count."
+        )
+
+    for record in records:
+
+        if not record["searchable_text"].strip():
+            raise ValueError(
+                f"Empty searchable text for {record['ko_id']}."
+            )
+
+        metadata = record["metadata"]
+
+        if not metadata["title"].strip():
+            raise ValueError(
+                f"Missing title for {record['ko_id']}."
+            )
+
+    print("PASS: Dataset and embedding alignment verified.")
 
 
 # ---------------------------------------------------------
@@ -136,10 +213,10 @@ def load_embeddings():
 
 def create_table(connection) -> None:
     """
-    Create the derived SiteSeer semantic-search index.
+    Create the derived semantic-search index.
 
-    This table is not the authoritative knowledge source.
-    It can be rebuilt from approved EKO data.
+    This table is not the authoritative SiteSeer
+    knowledge source.
     """
 
     with connection.cursor() as cursor:
@@ -159,11 +236,9 @@ def create_table(connection) -> None:
             """
         )
 
-    connection.commit()
-
 
 # ---------------------------------------------------------
-# Index EKOs
+# Refresh pgvector index
 # ---------------------------------------------------------
 
 def index_ekos(
@@ -173,10 +248,13 @@ def index_ekos(
     embeddings: np.ndarray,
 ) -> None:
     """
-    Insert or update each search-ready EKO and its embedding.
+    Synchronise the derived index with the complete
+    search-ready dataset.
 
-    ON CONFLICT allows the derived index to be refreshed when
-    the same KO is indexed again.
+    Insert new KOs, update existing KOs, and remove
+    records absent from the current source snapshot.
+
+    The caller commits only after successful verification.
     """
 
     records_by_id = {
@@ -184,23 +262,17 @@ def index_ekos(
         for record in records
     }
 
-    indexed_count = 0
+    current_ids = [
+        str(ko_id)
+        for ko_id in ko_ids
+    ]
 
     with connection.cursor() as cursor:
 
-        for index, ko_id_value in enumerate(ko_ids):
+        for index, ko_id in enumerate(current_ids):
 
-            ko_id = str(ko_id_value)
-
-            record = records_by_id.get(ko_id)
-
-            if record is None:
-                raise ValueError(
-                    f"No search-ready EKO found for {ko_id}"
-                )
-
+            record = records_by_id[ko_id]
             metadata = record["metadata"]
-
             embedding = embeddings[index]
 
             cursor.execute(
@@ -244,32 +316,36 @@ def index_ekos(
                 ),
             )
 
-            indexed_count += 1
+        # Remove KOs that are no longer in the
+        # current approved search-ready snapshot.
+        cursor.execute(
+            """
+            DELETE FROM knowledge_embeddings
+            WHERE NOT (ko_id = ANY(%s::text[]));
+            """,
+            (current_ids,),
+        )
 
-    connection.commit()
+        removed_count = cursor.rowcount
 
-    print(f"EKOs indexed into pgvector: {indexed_count}")
+    print(f"EKOs inserted/updated: {len(current_ids)}")
+    print(f"Stale EKOs removed: {removed_count}")
 
 
 # ---------------------------------------------------------
 # Verify index
 # ---------------------------------------------------------
 
-def verify_index(connection) -> None:
+def verify_index(
+    connection,
+    expected_ids: set[str],
+) -> None:
     """
-    Display basic information about the pgvector index.
+    Verify that the database contains exactly the
+    expected KO IDs with valid embedding dimensions.
     """
 
     with connection.cursor() as cursor:
-
-        cursor.execute(
-            """
-            SELECT COUNT(*)
-            FROM knowledge_embeddings;
-            """
-        )
-
-        total = cursor.fetchone()[0]
 
         cursor.execute(
             """
@@ -278,22 +354,43 @@ def verify_index(connection) -> None:
                 title,
                 vector_dims(embedding)
             FROM knowledge_embeddings
-            ORDER BY ko_id
-            LIMIT 5;
+            ORDER BY ko_id;
             """
         )
 
-        sample_records = cursor.fetchall()
+        rows = cursor.fetchall()
+
+    actual_ids = {
+        row[0]
+        for row in rows
+    }
+
+    if actual_ids != expected_ids:
+        raise ValueError(
+            "PostgreSQL KO IDs do not match the "
+            "current search-ready dataset."
+        )
+
+    for ko_id, title, dimensions in rows:
+
+        if dimensions != EMBEDDING_DIMENSION:
+            raise ValueError(
+                f"Invalid embedding dimensions for {ko_id}: "
+                f"{dimensions}"
+            )
 
     print()
     print("pgvector Index Summary")
     print("----------------------")
-    print(f"Total indexed EKOs: {total}")
+    print(f"Total indexed EKOs: {len(rows)}")
+    print("PASS: All KO IDs match the source dataset.")
+    print("PASS: All embedding dimensions are valid.")
 
     print()
     print("Sample indexed records:")
 
-    for ko_id, title, dimensions in sample_records:
+    for ko_id, title, dimensions in rows[:5]:
+
         print(
             f"{ko_id} | {title} | "
             f"dimensions={dimensions}"
@@ -310,17 +407,24 @@ def main() -> None:
     print("-------------------------------")
 
     records = load_ekos()
-
     ko_ids, embeddings = load_embeddings()
 
     print(f"Search-ready EKOs loaded: {len(records)}")
     print(f"Embeddings loaded: {embeddings.shape}")
+
+    # Validate before making any database changes.
+    validate_index_inputs(
+        records=records,
+        ko_ids=ko_ids,
+        embeddings=embeddings,
+    )
 
     connection = get_database_connection()
 
     try:
         print("Connected to PostgreSQL.")
 
+        # Create, refresh and verify within one transaction.
         create_table(connection)
 
         print("knowledge_embeddings table ready.")
@@ -332,12 +436,32 @@ def main() -> None:
             embeddings=embeddings,
         )
 
-        verify_index(connection)
+        verify_index(
+            connection=connection,
+            expected_ids={
+                record["ko_id"]
+                for record in records
+            },
+        )
 
-    finally:
-        connection.close()
+        connection.commit()
 
         print()
+        print("PASS: Index refresh committed successfully.")
+
+    except Exception:
+
+        connection.rollback()
+
+        print()
+        print("ERROR: Index refresh failed. Transaction rolled back.")
+
+        raise
+
+    finally:
+
+        connection.close()
+
         print("Database connection closed.")
 
 
