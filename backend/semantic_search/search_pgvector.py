@@ -68,14 +68,20 @@ def semantic_search_pgvector(
     """
     Perform semantic search with optional metadata filters.
 
-    Metadata filters restrict the candidate Knowledge Objects
+    Metadata filters restrict candidate Knowledge Objects
     before pgvector ranks them by cosine similarity.
+
+    Returns EKO metadata, similarity score, and searchable
+    L1-L5 evidence for downstream RAG generation.
     """
 
     query = query.strip()
 
     if not query:
         raise ValueError("Search query cannot be empty.")
+
+    if top_k < 1:
+        raise ValueError("top_k must be at least 1.")
 
     # Convert learner question into an embedding.
     query_embedding = model.encode(
@@ -122,6 +128,7 @@ def semantic_search_pgvector(
         SELECT
             ko_id,
             title,
+            searchable_text,
             stage,
             trade,
             jurisdiction,
@@ -142,11 +149,7 @@ def semantic_search_pgvector(
     ]
 
     with connection.cursor() as cursor:
-        cursor.execute(
-            sql,
-            parameters,
-        )
-
+        cursor.execute(sql, parameters)
         rows = cursor.fetchall()
 
     results = []
@@ -156,12 +159,13 @@ def semantic_search_pgvector(
             {
                 "ko_id": row[0],
                 "title": row[1],
-                "stage": row[2],
-                "trade": row[3],
-                "jurisdiction": row[4],
-                "learner_level": row[5],
-                "version": row[6],
-                "score": float(row[7]),
+                "searchable_text": row[2],
+                "stage": row[3],
+                "trade": row[4],
+                "jurisdiction": row[5],
+                "learner_level": row[6],
+                "version": row[7],
+                "score": float(row[8]),
             }
         )
 
@@ -210,10 +214,7 @@ def display_results(
         )
         return
 
-    for rank, result in enumerate(
-        results,
-        start=1,
-    ):
+    for rank, result in enumerate(results, start=1):
         print()
         print(
             f"{rank}. "
