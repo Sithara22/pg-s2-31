@@ -356,6 +356,18 @@ This decision is not final and should be re-evaluated using real SiteSeer data.
 - Retrieval test dataset: ✅
 - Semantic retrieval evaluation: ✅
 - Initial answerability analysis: ✅
-- Expanded synthetic EKO corpus: ⬜ Next
-- Answerability / refusal mechanism: ⬜
-- RAG / AI Tutor: ⬜
+- Expanded synthetic EKO corpus: ✅
+- Answerability / refusal mechanism: ✅
+- Local RAG pipeline (synthetic data): ✅
+- End-to-end RAG evaluation (40 synthetic cases): ✅
+- Integration with approved SiteSeer EKOs: ⬜ Pending
+
+---
+
+## RAG Pipeline Integration
+
+The semantic search component provides the retrieval layer for the SiteSeer 2B RAG pipeline.
+
+The RAG pipeline uses retrieved EKO evidence to generate answers through a local Qwen3 model, validates EKO citations, and handles insufficient-evidence questions.
+
+For architecture, setup, execution and evaluation, see the [RAG Pipeline README](../llm/README.md).
