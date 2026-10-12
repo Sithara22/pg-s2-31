@@ -115,6 +115,92 @@ The citation validator checks that an answered response cites retrieved EKO IDs 
 
 The system prompt also prioritizes evidence directly relevant to the learner's question rather than adding tangential material from other retrieved EKOs.
 
+## Manual RAG Smoke Tests (Verified on Synthetic EKOs)
+
+These checks were executed manually from the repository root using the local MiniLM + PostgreSQL/pgvector + Ollama/Qwen3 setup. They are intended as **quick, reproducible functional checks**, not a substitute for the 40-case automated evaluation or an independent factual-grounding audit. Ensure the prerequisites above are running before testing.
+
+### Test 1 — End-to-end answer generation
+
+**Purpose:** Check that a learner question flows through embedding, retrieval, generation, and citation validation.
+
+```bash
+python -m backend.llm.rag_pipeline --question "What evidence should be recorded before a concrete slab pour?"
+```
+
+**Observed result:** The system retrieved `MOCK-KO-001`, `MOCK-KO-005`, and `MOCK-KO-009`, produced an answer citing those three retrieved IDs, and returned `Answer status: answered`.
+
+**Pass criteria:** Relevant evidence is retrieved; the pipeline returns `answered` with citations drawn from retrieved EKOs. **Limitation:** This run checks execution and citation-ID validity; it does not establish that every sentence fully answers the question or is supported by source text.
+
+### Test 2 — Refusal when exact specifications are unsupported
+
+**Purpose:** Check that the model does not invent an exact construction requirement absent from the retrieved evidence.
+
+```bash
+python -m backend.llm.rag_pipeline --question "What exact bolt diameter and spacing must be used for temporary wall bracing under the Australian Standards?"
+```
+
+**Observed result:** Three related EKOs were retrieved, but the answer stated that the evidence did not specify the exact dimensions. `Cited sources: None`; `Answer status: insufficient_evidence`.
+
+**Pass criteria:** No fabricated bolt sizes, spacing, or standards requirements; an explicit insufficient-evidence response.
+
+### Test 3 — Positive metadata filtering (stage + trade)
+
+**Purpose:** Confirm that the search returns only EKOs matching both supplied metadata filters, before semantic ranking.
+
+```bash
+python -m backend.llm.rag_pipeline --question "Why is temporary wall bracing important?" --stage "Wall Framing" --trade "Carpentry"
+```
+
+**Observed RAG result:** `MOCK-KO-002`, `MOCK-KO-017`, and `MOCK-KO-016` were retrieved, and the answer cited `MOCK-KO-002` with status `answered`.
+
+**Independent metadata check:** Run the interactive retrieval CLI:
+
+```bash
+python -m backend.semantic_search.search_pgvector
+```
+
+Enter the same question, `Wall Framing` for **Stage**, `Carpentry` for **Trade**, and leave the other filters blank. The verified run returned:
+
+| Retrieved EKO | Stage | Trade | Similarity |
+| --- | --- | --- | ---: |
+| `MOCK-KO-002` | Wall Framing | Carpentry | 0.7027 |
+| `MOCK-KO-017` | Wall Framing | Carpentry | 0.3667 |
+| `MOCK-KO-016` | Wall Framing | Carpentry | 0.3603 |
+
+**Pass criteria:** Every returned EKO matches **both** filters. Code inspection also confirmed that `search_pgvector.py` builds parameterised SQL `WHERE` conditions joined with `AND`. This test verifies the particular stage/trade combination shown; it is not an exhaustive test of all metadata combinations.
+
+### Test 4 — Negative metadata filtering (no matching stage)
+
+**Purpose:** Verify that an unmatched filter does not silently fall back to unrelated EKOs.
+
+```bash
+python -m backend.llm.rag_pipeline --question "Why is temporary wall bracing important?" --stage "NONEXISTENT_STAGE_TEST"
+```
+
+**Observed result:** `Retrieved EKOs: None`; `Cited sources: None`; `Answer status: insufficient_evidence`.
+
+**Pass criteria:** No retrieved records and no invented answer or citation.
+
+### Test 5 — Reject a fabricated EKO citation
+
+**Purpose:** Unit-check that the citation validator rejects an answer citing an ID outside the allowed retrieved set.
+
+```bash
+python -c 'from backend.llm.rag_pipeline import validate_citations; validate_citations("Temporary bracing is required [MOCK-KO-999].", {"MOCK-KO-002"})'
+```
+
+**Observed result:** The validator raised:
+
+```text
+ValueError: Answer references EKOs not retrieved: MOCK-KO-999
+```
+
+**Pass criteria:** A `ValueError` is **expected** for this deliberately invalid citation; a nonzero exit status here indicates the rejection mechanism was triggered, not a pipeline defect. The test validates source-ID membership, **not** whether a claim is semantically entailed by its citation.
+
+### Smoke-test outcome and interpretation
+
+All **five manual smoke tests produced their expected outcomes** in the development environment. These observations complement, but are separate from, the automated 40-case synthetic benchmark below. Results may change if the corpus, embedding model, generation model, prompt, or metadata values change. The current tests do not establish correctness on approved SiteSeer EKOs or guarantee factual accuracy in real construction scenarios.
+
 ## Evaluation
 
 There are **two distinct evaluation approaches**. Both currently use synthetic test data.
