@@ -1,0 +1,207 @@
+{
+  "benchmark_type": "end_to_end_synthetic_retrieval_generation",
+  "model": "qwen3:4b-q4_K_M",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "created_at_utc": "2026-10-12T00:41:52.925038+00:00",
+  "notes": "Retrieval metrics are based on synthetic expected EKO IDs. Citation checks validate references, not claim-level grounding. Answer statuses are reported by the RAG pipeline and are not independent verification of factual correctness. Insufficient-evidence cases may retrieve unrelated EKOs.",
+  "summary": {
+    "total_cases": 5,
+    "answerable_cases": 0,
+    "insufficient_cases": 5,
+    "hit_at_1": 0,
+    "hit_at_k": 0,
+    "top_k": 3,
+    "answerable_cases_with_citation": 0,
+    "answerable_cases_answered": 0,
+    "insufficient_cases_refused": 5,
+    "citation_validation_failures": 0,
+    "invalid_model_responses": 0,
+    "status_counts": {
+      "insufficient_evidence": 5
+    },
+    "cases_with_unsupported_citations": 0,
+    "mean_latency_seconds": 5.159
+  },
+  "results": [
+    {
+      "test_id": "RET-036",
+      "scenario": "insufficient_zero_evidence",
+      "question": "How should solar panels be installed?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-004",
+        "MOCK-KO-024",
+        "MOCK-KO-017"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.26249973252420866
+        },
+        {
+          "ko_id": "MOCK-KO-024",
+          "title": "Roof catchment and drainage coordination",
+          "score": 0.21662407914543658
+        },
+        {
+          "ko_id": "MOCK-KO-017",
+          "title": "Load path continuity at wall top plates",
+          "score": 0.19702400178433388
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not provide specific information on how to install solar panels. The provided knowledge covers roof framing, drainage coordination, and load path continuity, but not solar panel installation procedures.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.789
+    },
+    {
+      "test_id": "RET-037",
+      "scenario": "insufficient_zero_evidence",
+      "question": "What exact air-conditioner capacity in kilowatts is required for my specific house without any building measurements?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-037",
+        "MOCK-KO-039",
+        "MOCK-KO-040"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-037",
+          "title": "Residential HVAC capacity design inputs",
+          "score": 0.5263703057721734
+        },
+        {
+          "ko_id": "MOCK-KO-039",
+          "title": "Supply and return air location coordination",
+          "score": 0.3161926661787233
+        },
+        {
+          "ko_id": "MOCK-KO-040",
+          "title": "Duct route and access planning",
+          "score": 0.22575787960574378
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The evidence does not provide specific information about the exact air-conditioner capacity in kilowatts required for a house without building measurements. The available evidence emphasizes the importance of building-specific design inputs and the need for a qualified designer to determine the capacity.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 5.521
+    },
+    {
+      "test_id": "RET-038",
+      "scenario": "insufficient_zero_evidence",
+      "question": "What is the best way to improve the energy efficiency of a house?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-037",
+        "MOCK-KO-039",
+        "MOCK-KO-040"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-037",
+          "title": "Residential HVAC capacity design inputs",
+          "score": 0.272264079586515
+        },
+        {
+          "ko_id": "MOCK-KO-039",
+          "title": "Supply and return air location coordination",
+          "score": 0.16107632749817835
+        },
+        {
+          "ko_id": "MOCK-KO-040",
+          "title": "Duct route and access planning",
+          "score": 0.12329533001919879
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address the best way to improve the energy efficiency of a house. It focuses on HVAC design inputs, air location coordination, and duct routing, but does not provide specific strategies for improving energy efficiency.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 5.066
+    },
+    {
+      "test_id": "RET-039",
+      "scenario": "insufficient_zero_evidence",
+      "question": "Which exterior paint should I use?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-030",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.19163711940160755
+        },
+        {
+          "ko_id": "MOCK-KO-030",
+          "title": "Wet-area substrate readiness",
+          "score": 0.19039259426726507
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.13667332847754665
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not provide specific information about which exterior paint to use. The provided knowledge focuses on wet-area wall framing, substrate readiness, and frame inspection, but does not mention exterior paint selection criteria or recommendations.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 5.376
+    },
+    {
+      "test_id": "RET-040",
+      "scenario": "insufficient_zero_evidence",
+      "question": "How should a swimming pool filtration system be installed?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-024",
+        "MOCK-KO-030",
+        "MOCK-KO-033"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-024",
+          "title": "Roof catchment and drainage coordination",
+          "score": 0.25284052682526825
+        },
+        {
+          "ko_id": "MOCK-KO-030",
+          "title": "Wet-area substrate readiness",
+          "score": 0.250996328801254
+        },
+        {
+          "ko_id": "MOCK-KO-033",
+          "title": "Electrical positions in wet areas",
+          "score": 0.21471150648994886
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not provide specific information on how to install a swimming pool filtration system. The provided knowledge items relate to roof drainage, wet-area substrates, and electrical positions in wet areas, but not to swimming pool filtration systems.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 5.045
+    }
+  ]
+}

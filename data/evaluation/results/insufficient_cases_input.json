@@ -1,0 +1,62 @@
+[
+  {
+    "test_id": "RET-036",
+    "question": "How should solar panels be installed?",
+    "filters": {},
+    "scenario": "insufficient_zero_evidence",
+    "expected_ko_id": null,
+    "model_input": {
+      "system": "You are a SiteSeer learning assistant evaluating SYNTHETIC construction knowledge. Answer only using the EKO evidence provided. Do not rely on outside knowledge. If the evidence does not support a complete answer, say that the available EKO evidence is insufficient. Do not guess technical specifications, legal requirements, measurements, or standards. Cite supporting KO IDs in square brackets, e.g. [MOCK-KO-001]. Do not cite an EKO that does not support your claim.",
+      "user": "Question: How should solar panels be installed?\n\nAvailable EKO evidence (synthetic):\n[]"
+    },
+    "evidence_ko_ids": []
+  },
+  {
+    "test_id": "RET-037",
+    "question": "What exact air-conditioner capacity in kilowatts is required for my specific house without any building measurements?",
+    "filters": {},
+    "scenario": "insufficient_zero_evidence",
+    "expected_ko_id": null,
+    "model_input": {
+      "system": "You are a SiteSeer learning assistant evaluating SYNTHETIC construction knowledge. Answer only using the EKO evidence provided. Do not rely on outside knowledge. If the evidence does not support a complete answer, say that the available EKO evidence is insufficient. Do not guess technical specifications, legal requirements, measurements, or standards. Cite supporting KO IDs in square brackets, e.g. [MOCK-KO-001]. Do not cite an EKO that does not support your claim.",
+      "user": "Question: What exact air-conditioner capacity in kilowatts is required for my specific house without any building measurements?\n\nAvailable EKO evidence (synthetic):\n[]"
+    },
+    "evidence_ko_ids": []
+  },
+  {
+    "test_id": "RET-038",
+    "question": "What is the best way to improve the energy efficiency of a house?",
+    "filters": {},
+    "scenario": "insufficient_zero_evidence",
+    "expected_ko_id": null,
+    "model_input": {
+      "system": "You are a SiteSeer learning assistant evaluating SYNTHETIC construction knowledge. Answer only using the EKO evidence provided. Do not rely on outside knowledge. If the evidence does not support a complete answer, say that the available EKO evidence is insufficient. Do not guess technical specifications, legal requirements, measurements, or standards. Cite supporting KO IDs in square brackets, e.g. [MOCK-KO-001]. Do not cite an EKO that does not support your claim.",
+      "user": "Question: What is the best way to improve the energy efficiency of a house?\n\nAvailable EKO evidence (synthetic):\n[]"
+    },
+    "evidence_ko_ids": []
+  },
+  {
+    "test_id": "RET-039",
+    "question": "Which exterior paint should I use?",
+    "filters": {},
+    "scenario": "insufficient_zero_evidence",
+    "expected_ko_id": null,
+    "model_input": {
+      "system": "You are a SiteSeer learning assistant evaluating SYNTHETIC construction knowledge. Answer only using the EKO evidence provided. Do not rely on outside knowledge. If the evidence does not support a complete answer, say that the available EKO evidence is insufficient. Do not guess technical specifications, legal requirements, measurements, or standards. Cite supporting KO IDs in square brackets, e.g. [MOCK-KO-001]. Do not cite an EKO that does not support your claim.",
+      "user": "Question: Which exterior paint should I use?\n\nAvailable EKO evidence (synthetic):\n[]"
+    },
+    "evidence_ko_ids": []
+  },
+  {
+    "test_id": "RET-040",
+    "question": "How should a swimming pool filtration system be installed?",
+    "filters": {},
+    "scenario": "insufficient_zero_evidence",
+    "expected_ko_id": null,
+    "model_input": {
+      "system": "You are a SiteSeer learning assistant evaluating SYNTHETIC construction knowledge. Answer only using the EKO evidence provided. Do not rely on outside knowledge. If the evidence does not support a complete answer, say that the available EKO evidence is insufficient. Do not guess technical specifications, legal requirements, measurements, or standards. Cite supporting KO IDs in square brackets, e.g. [MOCK-KO-001]. Do not cite an EKO that does not support your claim.",
+      "user": "Question: How should a swimming pool filtration system be installed?\n\nAvailable EKO evidence (synthetic):\n[]"
+    },
+    "evidence_ko_ids": []
+  }
+]
