@@ -1,0 +1,155 @@
+{
+  "benchmark_type": "end_to_end_synthetic_retrieval_generation",
+  "model": "qwen3:4b-q4_K_M",
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "created_at_utc": "2026-10-12T00:39:16.940662+00:00",
+  "notes": "Retrieval metrics are based on synthetic expected EKO IDs. Citation checks validate references, not claim-level grounding. Answer statuses are reported by the RAG pipeline and are not independent verification of factual correctness. Insufficient-evidence cases may retrieve unrelated EKOs.",
+  "summary": {
+    "total_cases": 3,
+    "answerable_cases": 3,
+    "insufficient_cases": 0,
+    "hit_at_1": 3,
+    "hit_at_k": 3,
+    "top_k": 3,
+    "answerable_cases_with_citation": 3,
+    "answerable_cases_answered": 3,
+    "insufficient_cases_refused": 0,
+    "citation_validation_failures": 0,
+    "invalid_model_responses": 0,
+    "status_counts": {
+      "answered": 3
+    },
+    "cases_with_unsupported_citations": 0,
+    "mean_latency_seconds": 7.342
+  },
+  "results": [
+    {
+      "test_id": "RET-001",
+      "scenario": "answerable_candidate",
+      "question": "What should I check before concrete is poured for a slab?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-001",
+      "retrieved_ko_ids": [
+        "MOCK-KO-001",
+        "MOCK-KO-005",
+        "MOCK-KO-018"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.6682935749609652
+        },
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.52346181310134
+        },
+        {
+          "ko_id": "MOCK-KO-018",
+          "title": "Under-slab drainage testing readiness",
+          "score": 0.46359860680095744
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "Before concrete is poured for a slab, you should check the pre-pour slab inspection [MOCK-KO-001], under-slab drainage inspection [MOCK-KO-005], and under-slab drainage testing readiness [MOCK-KO-018]. These checks ensure that important construction work is inspected before it becomes difficult or impossible to access after the concrete is placed.",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-001",
+        "MOCK-KO-005",
+        "MOCK-KO-018"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 9.442
+    },
+    {
+      "test_id": "RET-002",
+      "scenario": "answerable_candidate",
+      "question": "How do I stop a newly installed wall frame from moving?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-002",
+      "retrieved_ko_ids": [
+        "MOCK-KO-002",
+        "MOCK-KO-008",
+        "MOCK-KO-016"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.37313243746757774
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.3466885936181905
+        },
+        {
+          "ko_id": "MOCK-KO-016",
+          "title": "Stud spacing and layout checks",
+          "score": 0.29072795565557796
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "To stop a newly installed wall frame from moving, temporary bracing should be installed as part of the framing sequence and remain in place while temporary stability is required [MOCK-KO-002].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-002"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 5.141
+    },
+    {
+      "test_id": "RET-003",
+      "scenario": "answerable_candidate",
+      "question": "What should I inspect on a wall frame before it gets covered?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-003",
+      "retrieved_ko_ids": [
+        "MOCK-KO-003",
+        "MOCK-KO-008",
+        "MOCK-KO-016"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.5880406780097486
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.3578180965944182
+        },
+        {
+          "ko_id": "MOCK-KO-016",
+          "title": "Stud spacing and layout checks",
+          "score": 0.3010668395678018
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "You should inspect the wall frame for proper alignment and spacing before it gets covered. This includes checking that the frame is in the correct position as established during set-out [MOCK-KO-008] and that the stud spacing is consistent with the design [MOCK-KO-016]. An experienced practitioner will also pay particular attention to items that will no longer be visible after the next construction stage [MOCK-KO-003].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-008",
+        "MOCK-KO-016",
+        "MOCK-KO-003"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 7.443
+    }
+  ]
+}

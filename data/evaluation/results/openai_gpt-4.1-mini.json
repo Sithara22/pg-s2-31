@@ -1,0 +1,603 @@
+{
+  "benchmark_type": "fixed_evidence_synthetic",
+  "provider": "openai",
+  "model": "gpt-4.1-mini",
+  "created_at_utc": "2026-10-11T13:02:55.460554+00:00",
+  "generation_options": {
+    "temperature": 0,
+    "max_output_tokens": 512,
+    "store": false
+  },
+  "results": [
+    {
+      "test_id": "RET-001",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-001",
+      "evidence_ko_ids": [
+        "MOCK-KO-001"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before concrete is poured for a slab, a pre-pour inspection should be conducted to check important construction work that will become concealed by the concrete. This inspection ensures that any issues are identified and addressed before the concrete placement, as it becomes difficult or impossible to inspect the work afterward. The specific checks depend on the work present at the stage and the applicable project requirements. An experienced practitioner performs this inspection after all relevant pre-pour work is complete and before the concrete is placed [MOCK-KO-001].",
+      "latency_seconds": 5.418,
+      "input_tokens": 325,
+      "output_tokens": 103,
+      "estimated_api_cost_usd": "0.0002948"
+    },
+    {
+      "test_id": "RET-002",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-002",
+      "evidence_ko_ids": [
+        "MOCK-KO-002"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "To stop a newly installed wall frame from moving, temporary bracing should be installed as part of the framing sequence. This bracing supports the wall frame while the structure is not yet fully stabilized by later construction work. The bracing remains in place as long as temporary stability is required, and its arrangement depends on the frame condition and construction sequence. An experienced practitioner assesses whether the partially completed frame can remain stable during subsequent work, ensuring the temporary bracing is properly connected to the wall framing and overall structure stability [MOCK-KO-002].",
+      "latency_seconds": 2.587,
+      "input_tokens": 325,
+      "output_tokens": 110,
+      "estimated_api_cost_usd": "0.0003060"
+    },
+    {
+      "test_id": "RET-003",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-003",
+      "evidence_ko_ids": [
+        "MOCK-KO-003"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before a wall frame gets covered, the inspection should be done at an appropriate stage after the relevant framing work is completed but before any lining or other work conceals the frame. The inspection focuses on reviewing the frame carefully, especially the parts that will no longer be visible after the next construction stage. The timing of this inspection depends on when the framing will become concealed, and an experienced practitioner pays particular attention to these critical items during the inspection [MOCK-KO-003].",
+      "latency_seconds": 1.374,
+      "input_tokens": 328,
+      "output_tokens": 96,
+      "estimated_api_cost_usd": "0.0002848"
+    },
+    {
+      "test_id": "RET-004",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-004",
+      "evidence_ko_ids": [
+        "MOCK-KO-004"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "When setting out roof framing, you should check the intended positions of roof framing elements before installation proceeds. This involves establishing and verifying the relevant positions as part of the roof framing sequence prior to installing the associated members. The set-out depends on the roof configuration and the applicable construction information. It is important for an experienced practitioner to check whether the set-out is consistent to prevent repeating errors in later roof framing work. The roof framing set-out should follow relevant supporting construction and guide the subsequent roof framing installation [MOCK-KO-004].",
+      "latency_seconds": 1.384,
+      "input_tokens": 315,
+      "output_tokens": 107,
+      "estimated_api_cost_usd": "0.0002972"
+    },
+    {
+      "test_id": "RET-005",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-005",
+      "evidence_ko_ids": [
+        "MOCK-KO-005"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before the slab is poured, the under-slab drainage work that will become difficult or impossible to access after the slab is constructed needs to be checked. This inspection focuses on drainage components that will be concealed by the slab and cannot be easily corrected once concrete is placed. The check occurs after the drainage work is installed but before the slab construction conceals it, ensuring any issues can be addressed in time [MOCK-KO-005].",
+      "latency_seconds": 2.56,
+      "input_tokens": 318,
+      "output_tokens": 88,
+      "estimated_api_cost_usd": "0.0002680"
+    },
+    {
+      "test_id": "RET-006",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-006",
+      "evidence_ko_ids": [
+        "MOCK-KO-006"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "When preparing wall framing in wet areas, you should consider how the framing arrangement aligns with the specific construction and finishes planned for that wet area. The framing must be checked against relevant design and construction requirements before installing finishes. The appropriate framing arrangement can vary depending on the wall system, finishes, and project requirements. It is important to consider how the wet-area construction, including lining, waterproofing, and finishing activities, will interact with the framing rather than treating the frame in isolation. This integrated approach ensures the framing supports the overall wet-area construction effectively [MOCK-KO-006].",
+      "latency_seconds": 2.352,
+      "input_tokens": 326,
+      "output_tokens": 117,
+      "estimated_api_cost_usd": "0.0003176"
+    },
+    {
+      "test_id": "RET-007",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-007",
+      "evidence_ko_ids": [
+        "MOCK-KO-007"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The order of construction work matters before something is concealed because construction sequencing ensures that required inspections and checks occur before later activities conceal or restrict access to earlier work. Proper sequencing allows identification of work that will become inaccessible once concealed, ensuring inspections and necessary tasks are completed in time. This planning connects preceding work, inspections, concealment points, and subsequent construction activities to avoid issues caused by restricted access after concealment [MOCK-KO-007].",
+      "latency_seconds": 1.428,
+      "input_tokens": 311,
+      "output_tokens": 89,
+      "estimated_api_cost_usd": "0.0002668"
+    },
+    {
+      "test_id": "RET-008",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-008",
+      "evidence_ko_ids": [
+        "MOCK-KO-008"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "When setting out a wall frame, you should consider the following:\n\n- Establish the intended position of the wall framing before completing the frame.\n- Use relevant project information to determine wall positions and check these positions before starting framing.\n- Make set-out decisions based on the building layout and specific information related to the particular wall.\n- Have an experienced practitioner verify the relationship between the wall position and surrounding construction early on to prevent errors that are difficult to correct later.\n- Recognize that wall frame set-out depends on earlier building layout information and guides subsequent framing activities.\n\nThese considerations ensure accurate placement and integration of the wall frame within the overall construction [MOCK-KO-008].",
+      "latency_seconds": 1.852,
+      "input_tokens": 313,
+      "output_tokens": 134,
+      "estimated_api_cost_usd": "0.0003396"
+    },
+    {
+      "test_id": "RET-009",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-009",
+      "evidence_ko_ids": [
+        "MOCK-KO-009"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Evidence should be captured before construction work is covered because it provides a record that the relevant construction was checked before it became concealed. This is important as the required evidence must be captured at the appropriate stage before subsequent construction prevents normal observation of the work. Capturing evidence at this stage allows for inspection, concealment points, and later verification of the completed construction. An experienced practitioner recognizes this as the last practical opportunity to inspect or record the work before access is lost. The specific evidence required depends on the activity, inspection requirements, and the type of work being concealed [MOCK-KO-009].",
+      "latency_seconds": 1.729,
+      "input_tokens": 316,
+      "output_tokens": 120,
+      "estimated_api_cost_usd": "0.0003184"
+    },
+    {
+      "test_id": "RET-010",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-010",
+      "evidence_ko_ids": [
+        "MOCK-KO-010"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "One construction decision can depend on another because it relies on earlier work, available information, and other related decisions. Dependencies are identified before making a decision to consider relevant preceding conditions and downstream effects. The importance of these dependencies varies with the construction context and the specific decision. An experienced practitioner takes into account not only the immediate decision but also what must happen before it and what it will affect afterward. These decision dependencies link related knowledge through preceding, following, and dependency relationships [MOCK-KO-010].",
+      "latency_seconds": 1.432,
+      "input_tokens": 313,
+      "output_tokens": 101,
+      "estimated_api_cost_usd": "0.0002868"
+    },
+    {
+      "test_id": "RET-011",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-016",
+      "evidence_ko_ids": [
+        "MOCK-KO-016"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Stud spacing and wall framing layout should be checked by reviewing the framing layout information and identifying the specified spacing before installation. This spacing must be verified against the applicable design, as it varies depending on the wall system, design, and project documentation. Additionally, a reviewer should ensure consistency between the framing layout and the information used by subsequent trades. The stud layout should follow the wall set-out because it influences later lining and service coordination [MOCK-KO-016].",
+      "latency_seconds": 2.191,
+      "input_tokens": 302,
+      "output_tokens": 93,
+      "estimated_api_cost_usd": "0.0002696"
+    },
+    {
+      "test_id": "RET-012",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-017",
+      "evidence_ko_ids": [
+        "MOCK-KO-017"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "To maintain load path continuity at wall top plates, the following should be checked:\n\n- Identify the relevant design details.\n- Review the top-plate and blocking interfaces before concealment.\n- Ensure connection requirements align with the engineered design and framing configuration.\n- Avoid treating connection details as interchangeable across different structural arrangements.\n- Consider how top-plate decisions relate to wall framing, roof framing, and later inspections.\n\nThese steps help ensure structural actions are properly transferred between connected building elements at the wall top plates [MOCK-KO-017].",
+      "latency_seconds": 2.208,
+      "input_tokens": 307,
+      "output_tokens": 107,
+      "estimated_api_cost_usd": "0.0002940"
+    },
+    {
+      "test_id": "RET-013",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-018",
+      "evidence_ko_ids": [
+        "MOCK-KO-018"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before under-slab drainage testing, the drainage installation must be complete and ready for verification, as testing is done before the plumbing becomes concealed by the slab. It is necessary to confirm that the required testing and records are completed before proceeding to concealment. Additionally, a reviewer will check that the test evidence corresponds to the installed work. The specific testing methods and acceptance requirements depend on applicable specifications and licensed trade responsibilities [MOCK-KO-018].",
+      "latency_seconds": 1.325,
+      "input_tokens": 299,
+      "output_tokens": 90,
+      "estimated_api_cost_usd": "0.0002636"
+    },
+    {
+      "test_id": "RET-014",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-019",
+      "evidence_ko_ids": [
+        "MOCK-KO-019"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Sanitary drain routes should be coordinated before slab work by reviewing the planned routes in relation to the building layout and other services to identify and resolve potential clashes with relevant trades before the work is covered. The route choices must consider design, levels, access, and site conditions. Experienced coordinators should flag any clashes early to avoid later rework. Proper drain routing also informs excavation, slab preparation, and future service access [MOCK-KO-019].",
+      "latency_seconds": 1.454,
+      "input_tokens": 297,
+      "output_tokens": 91,
+      "estimated_api_cost_usd": "0.0002644"
+    },
+    {
+      "test_id": "RET-015",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-020",
+      "evidence_ko_ids": [
+        "MOCK-KO-020"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Workers should understand relevant site rules, hazards, and their responsibilities before starting work. They must receive applicable induction information and know the escalation process for issues. The induction content is tailored to the specific site and current work activities. It is important that a supervisor verifies workers' understanding rather than just assuming attendance is sufficient. This induction occurs before any site work begins and connects to ongoing hazard communication throughout the project [MOCK-KO-020].",
+      "latency_seconds": 1.306,
+      "input_tokens": 292,
+      "output_tokens": 88,
+      "estimated_api_cost_usd": "0.0002576"
+    },
+    {
+      "test_id": "RET-016",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-021",
+      "evidence_ko_ids": [
+        "MOCK-KO-021"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Safety-critical concerns on a construction site should be escalated promptly through the appropriate site process. This involves identifying the concern, pausing the affected activity if necessary, and referring the issue to authorised personnel. The response will depend on the nature of the hazard, the authority involved, and the applicable site procedures. Experienced supervisors are advised not to dismiss serious concerns just because they disrupt the schedule, and safety escalation may interrupt planned sequencing until the issue is resolved [MOCK-KO-021].",
+      "latency_seconds": 1.463,
+      "input_tokens": 300,
+      "output_tokens": 98,
+      "estimated_api_cost_usd": "0.0002768"
+    },
+    {
+      "test_id": "RET-017",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-022",
+      "evidence_ko_ids": [
+        "MOCK-KO-022"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Pedestrian movement around mobile plant should be managed through active site planning that addresses the interface between mobile plant and pedestrian movements. This involves reviewing access routes, work zones, and communication arrangements before overlapping activities occur. Controls implemented depend on the specific equipment, available space, and site conditions. Additionally, a supervisor should monitor for any changes in movements that could invalidate the initial plan. Overall, movement planning should integrate deliveries, site access, and work sequencing to ensure safety [MOCK-KO-022].",
+      "latency_seconds": 1.398,
+      "input_tokens": 289,
+      "output_tokens": 100,
+      "estimated_api_cost_usd": "0.0002756"
+    },
+    {
+      "test_id": "RET-018",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-023",
+      "evidence_ko_ids": [
+        "MOCK-KO-023"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "If unexpected hazards are discovered during excavation, the changed condition must be escalated for appropriate assessment before any affected work continues. The required actions depend on the nature of the discovery and site controls. Experienced practitioners should recognize when the unforeseen condition exceeds the original work plan, as such excavation decisions can impact underground services and subsequent foundation work [MOCK-KO-023].",
+      "latency_seconds": 1.532,
+      "input_tokens": 289,
+      "output_tokens": 73,
+      "estimated_api_cost_usd": "0.0002324"
+    },
+    {
+      "test_id": "RET-019",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-024",
+      "evidence_ko_ids": [
+        "MOCK-KO-024"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Roof catchment areas and roof drainage should be coordinated by planning how roof catchments relate to the collection and discharge systems. Before installing connected components, relevant design and coordination information must be reviewed. The sizing and configuration of these components depend on the specific project design and applicable requirements. A reviewer should verify that all connected components are considered as a system. Decisions about catchment areas inform the design of gutters, downpipes, and stormwater connections to ensure proper coordination [MOCK-KO-024].",
+      "latency_seconds": 1.326,
+      "input_tokens": 294,
+      "output_tokens": 100,
+      "estimated_api_cost_usd": "0.0002776"
+    },
+    {
+      "test_id": "RET-020",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-025",
+      "evidence_ko_ids": [
+        "MOCK-KO-025"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "When providing overflow for roof drainage, the following should be considered:\n\n- Overflow provision is an integral part of roof drainage risk management.\n- The documented overflow approach must be coordinated with the overall roof drainage design.\n- Requirements for overflow depend on the specific roof configuration and applicable design criteria.\n- It is important to consider what happens if the primary drainage path becomes restricted.\n- Overflow provision is related to the design of the catchment area, gutter arrangement, and downstream drainage system.\n\nThese points highlight the need for a coordinated and comprehensive approach to managing overflow in roof drainage systems [MOCK-KO-025].",
+      "latency_seconds": 1.735,
+      "input_tokens": 289,
+      "output_tokens": 121,
+      "estimated_api_cost_usd": "0.0003092"
+    },
+    {
+      "test_id": "RET-021",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-026",
+      "evidence_ko_ids": [
+        "MOCK-KO-026"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "To check the intended fall and drainage direction of gutters, you should:\n\n- Understand that gutter fall refers to the intended direction of water movement toward collection points.\n- Verify the installation against the documented drainage layout before handover.\n- Ensure the installed gutters align with the approved design and product system, including required falls and detailing.\n- Look for any inconsistencies between the planned outlet locations and the actual installed arrangement.\n- Confirm that the gutter installation follows the roof drainage set-out and properly connects to downpipes.\n\nThis process ensures the gutters will effectively direct water as intended [MOCK-KO-026].",
+      "latency_seconds": 1.405,
+      "input_tokens": 299,
+      "output_tokens": 120,
+      "estimated_api_cost_usd": "0.0003116"
+    },
+    {
+      "test_id": "RET-022",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-027",
+      "evidence_ko_ids": [
+        "MOCK-KO-027"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Roof sheets can be protected from damage during nearby work by coordinating work areas to minimize impact on the roof finishes and inspecting the affected roof finishes after any potentially damaging activities. The risk of damage depends on the tools, materials, and location of the work. Effective roof protection involves linking trade sequencing, inspections, and defect management to prevent and address damage caused by adjacent construction activities [MOCK-KO-027].",
+      "latency_seconds": 1.127,
+      "input_tokens": 286,
+      "output_tokens": 82,
+      "estimated_api_cost_usd": "0.0002456"
+    },
+    {
+      "test_id": "RET-023",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-028",
+      "evidence_ko_ids": [
+        "MOCK-KO-028"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before internal lining work starts, the prerequisite framing and service activities must have reached the agreed inspection point. This means all relevant prerequisites and required checks should be confirmed to ensure readiness. The lining work follows framing and service rough-in, serving as a concealment point, so it is important that unresolved preceding work is avoided before lining begins [MOCK-KO-028].",
+      "latency_seconds": 1.176,
+      "input_tokens": 291,
+      "output_tokens": 74,
+      "estimated_api_cost_usd": "0.0002348"
+    },
+    {
+      "test_id": "RET-024",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-029",
+      "evidence_ko_ids": [
+        "MOCK-KO-029"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Ceiling lining should be sequenced after completing overhead work and considering access requirements. Before closing the ceiling, prerequisites and the planned installation order must be reviewed. The sequence may vary depending on the ceiling system and coordination needs. Additionally, a reviewer should verify whether any later trades still require access above the lining to ensure proper sequencing. Overall, ceiling lining depends on the completion and verification of overhead work [MOCK-KO-029].",
+      "latency_seconds": 1.302,
+      "input_tokens": 290,
+      "output_tokens": 87,
+      "estimated_api_cost_usd": "0.0002552"
+    },
+    {
+      "test_id": "RET-025",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-030",
+      "evidence_ko_ids": [
+        "MOCK-KO-030"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before finishing a wet-area substrate, it should be checked that the substrate suits the intended finishing and waterproofing systems. Additionally, substrate requirements and interface details must be confirmed prior to proceeding with finishes. This ensures that any issues with interfaces are identified and addressed before they are concealed by finishes. The readiness of the substrate involves coordination between framing, lining, waterproofing, and tiling, and depends on the specified system and wet-area design. An experienced reviewer should flag any interface issues at this stage [MOCK-KO-030].",
+      "latency_seconds": 1.597,
+      "input_tokens": 293,
+      "output_tokens": 107,
+      "estimated_api_cost_usd": "0.0002884"
+    },
+    {
+      "test_id": "RET-026",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-031",
+      "evidence_ko_ids": [
+        "MOCK-KO-031"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Dust exposure should be managed by coordinating the timing of dust-generating activities and implementing site controls with responsible personnel. This coordination helps to minimize the impact on other workers and occupied work zones. Controls must be tailored to the specific materials, tasks, and safety procedures involved. Experienced supervisors take into account exposure risks not only for the worker performing the task but also for others nearby. Effective dust management also affects trade scheduling and access restrictions to ensure safety when multiple trades are working simultaneously [MOCK-KO-031].",
+      "latency_seconds": 1.465,
+      "input_tokens": 283,
+      "output_tokens": 102,
+      "estimated_api_cost_usd": "0.0002764"
+    },
+    {
+      "test_id": "RET-027",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-032",
+      "evidence_ko_ids": [
+        "MOCK-KO-032"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "When planning electrical component locations, the following should be coordinated:\n\n- Confirm current design information and coordinate interfaces before rough-in.\n- Consider room use, design, and licensed electrical requirements in layout decisions.\n- Review the layout to check for clashes with framing, joinery, and other services.\n\nThis coordination ensures the electrical layout identifies intended positions of components and service routes, and informs subsequent construction stages such as lining and fit-off [MOCK-KO-032].",
+      "latency_seconds": 1.531,
+      "input_tokens": 290,
+      "output_tokens": 92,
+      "estimated_api_cost_usd": "0.0002632"
+    },
+    {
+      "test_id": "RET-028",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-033",
+      "evidence_ko_ids": [
+        "MOCK-KO-033"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Extra considerations for electrical positions in wet areas include the need for additional design and compliance measures specific to these environments. The proposed electrical layout must be referred to the approved design and responsible licensed professionals to ensure safety and compliance. Constraints on electrical placement depend on the specific room configuration and current requirements. Importantly, an experienced coordinator should not assume safe electrical positions based solely on general room layouts. Decisions about electrical positions in wet areas must also coordinate with waterproofing, fixtures, and finishes to ensure proper integration and safety [MOCK-KO-033].",
+      "latency_seconds": 2.56,
+      "input_tokens": 290,
+      "output_tokens": 109,
+      "estimated_api_cost_usd": "0.0002904"
+    },
+    {
+      "test_id": "RET-029",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-034",
+      "evidence_ko_ids": [
+        "MOCK-KO-034"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Electrical cable routes should be coordinated with framing penetrations by reviewing route information and structural interfaces with authorised trades before concealment. The routing must follow the framing layout and occur before wall or ceiling lining is installed. Permitted penetrations and routing depend on the design and applicable requirements. Any potential conflicts should be escalated by a reviewer rather than assuming modifications are acceptable [MOCK-KO-034].",
+      "latency_seconds": 1.324,
+      "input_tokens": 296,
+      "output_tokens": 80,
+      "estimated_api_cost_usd": "0.0002464"
+    },
+    {
+      "test_id": "RET-030",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-035",
+      "evidence_ko_ids": [
+        "MOCK-KO-035"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The electrical rough-in evidence that should be recorded before lining includes documenting the electrical rough-in locations before they become concealed. This involves coordinating the required inspection and capturing records prior to lining closing access. The specific evidence requirements depend on the project and the responsible trade. An experienced coordinator ensures that the records correctly identify the locations and the stage of the work. This verification is important as it precedes lining and supports later maintenance activities [MOCK-KO-035].",
+      "latency_seconds": 1.333,
+      "input_tokens": 291,
+      "output_tokens": 92,
+      "estimated_api_cost_usd": "0.0002636"
+    },
+    {
+      "test_id": "RET-031",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-036",
+      "evidence_ko_ids": [
+        "MOCK-KO-036"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before electrical systems are energised, it needs to be verified that the energisation is controlled with appropriate verification and authorisation. It must be confirmed that responsible licensed personnel have completed the required readiness process. The specific checks and authority depend on the installation and applicable rules. It is important not to treat physical completion alone as proof of safe energisation. This verification occurs after installation and verification and before operational handover [MOCK-KO-036].",
+      "latency_seconds": 1.184,
+      "input_tokens": 294,
+      "output_tokens": 90,
+      "estimated_api_cost_usd": "0.0002616"
+    },
+    {
+      "test_id": "RET-032",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-037",
+      "evidence_ko_ids": [
+        "MOCK-KO-037"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The design inputs to consider for residential HVAC capacity selection include building-specific factors rather than just room area. These inputs encompass envelope performance, occupancy, climate, and equipment assumptions. It is important to collect all required design information and have sizing referred to a responsible qualified designer. These inputs influence load calculations, which in turn inform equipment selection, duct planning, and commissioning. Relying on unsupported rules of thumb without proper inputs is discouraged by experienced reviewers [MOCK-KO-037].",
+      "latency_seconds": 1.364,
+      "input_tokens": 295,
+      "output_tokens": 97,
+      "estimated_api_cost_usd": "0.0002732"
+    },
+    {
+      "test_id": "RET-033",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-038",
+      "evidence_ko_ids": [
+        "MOCK-KO-038"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Before HVAC first-fix work is concealed, the following needs to be coordinated:\n\n- Service locations and access must be coordinated to ensure readiness.\n- The agreed service routes and any prerequisite work must be reviewed.\n- Coordination must consider the system layout and other installed services.\n- A reviewer should check for conflicts with framing, electrical work, and ceiling access.\n- This coordination follows design coordination and occurs before lining.\n\nThis ensures that HVAC first-fix work is properly integrated and no conflicts arise before concealment [MOCK-KO-038].",
+      "latency_seconds": 1.434,
+      "input_tokens": 296,
+      "output_tokens": 108,
+      "estimated_api_cost_usd": "0.0002912"
+    },
+    {
+      "test_id": "RET-034",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-039",
+      "evidence_ko_ids": [
+        "MOCK-KO-039"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "Supply and return air locations should be coordinated by reviewing their positions against the approved HVAC layout and surrounding building elements, considering the room use, system design, and access constraints. Experienced coordinators should identify obstructions and potential conflicts with later fit-out early in the process. This coordination ensures the intended distribution of conditioned air and connects HVAC design with ceiling and interior layout planning [MOCK-KO-039].",
+      "latency_seconds": 1.121,
+      "input_tokens": 291,
+      "output_tokens": 81,
+      "estimated_api_cost_usd": "0.0002460"
+    },
+    {
+      "test_id": "RET-035",
+      "scenario": "answerable_candidate",
+      "expected_ko_id": "MOCK-KO-040",
+      "evidence_ko_ids": [
+        "MOCK-KO-040"
+      ],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "When planning HVAC duct routes and future access, the following considerations should be made:\n\n- Coordination with the building structure, ceiling space, and future access requirements is essential.\n- Routing and access needs should be reviewed with relevant trades before installation to ensure feasibility.\n- The feasibility of the route depends on the available space and the designed HVAC system.\n- It is important to avoid concealing access conflicts that could affect future serviceability.\n- Duct routing should follow the HVAC design and inform ceiling and service coordination.\n\nThese points ensure that duct routes are practical, accessible for maintenance, and well integrated with other building elements [MOCK-KO-040].",
+      "latency_seconds": 1.536,
+      "input_tokens": 294,
+      "output_tokens": 129,
+      "estimated_api_cost_usd": "0.0003240"
+    },
+    {
+      "test_id": "RET-036",
+      "scenario": "insufficient_zero_evidence",
+      "expected_ko_id": null,
+      "evidence_ko_ids": [],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The available EKO evidence is insufficient to determine how solar panels should be installed.",
+      "latency_seconds": 1.016,
+      "input_tokens": 127,
+      "output_tokens": 17,
+      "estimated_api_cost_usd": "0.0000780"
+    },
+    {
+      "test_id": "RET-037",
+      "scenario": "insufficient_zero_evidence",
+      "expected_ko_id": null,
+      "evidence_ko_ids": [],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The available EKO evidence is insufficient to determine the exact air-conditioner capacity in kilowatts required for your specific house without any building measurements.",
+      "latency_seconds": 1.332,
+      "input_tokens": 141,
+      "output_tokens": 30,
+      "estimated_api_cost_usd": "0.0001044"
+    },
+    {
+      "test_id": "RET-038",
+      "scenario": "insufficient_zero_evidence",
+      "expected_ko_id": null,
+      "evidence_ko_ids": [],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The available EKO evidence is insufficient to determine the best way to improve the energy efficiency of a house.",
+      "latency_seconds": 0.918,
+      "input_tokens": 134,
+      "output_tokens": 22,
+      "estimated_api_cost_usd": "0.0000888"
+    },
+    {
+      "test_id": "RET-039",
+      "scenario": "insufficient_zero_evidence",
+      "expected_ko_id": null,
+      "evidence_ko_ids": [],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The available EKO evidence is insufficient to determine which exterior paint you should use.",
+      "latency_seconds": 0.813,
+      "input_tokens": 127,
+      "output_tokens": 17,
+      "estimated_api_cost_usd": "0.0000780"
+    },
+    {
+      "test_id": "RET-040",
+      "scenario": "insufficient_zero_evidence",
+      "expected_ko_id": null,
+      "evidence_ko_ids": [],
+      "model": "gpt-4.1-mini",
+      "provider": "openai",
+      "answer": "The available EKO evidence is insufficient to determine how a swimming pool filtration system should be installed.",
+      "latency_seconds": 1.024,
+      "input_tokens": 130,
+      "output_tokens": 20,
+      "estimated_api_cost_usd": "0.0000840"
+    }
+  ]
+}

@@ -1,0 +1,337 @@
+[
+  {
+    "test_id": "RET-001",
+    "question": "What should I check before concrete is poured for a slab?",
+    "expected_ko_id": "MOCK-KO-001",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-002",
+    "question": "How do I stop a newly installed wall frame from moving?",
+    "expected_ko_id": "MOCK-KO-002",
+    "filters": {
+      "stage": "Wall Framing",
+      "trade": "Carpentry",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-003",
+    "question": "What should I inspect on a wall frame before it gets covered?",
+    "expected_ko_id": "MOCK-KO-003",
+    "filters": {
+      "stage": "Wall Framing",
+      "trade": "Carpentry",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-004",
+    "question": "What should I check when setting out roof framing?",
+    "expected_ko_id": "MOCK-KO-004",
+    "filters": {
+      "stage": "Roof Framing",
+      "trade": "Carpentry",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-005",
+    "question": "What needs to be checked for drainage before the slab is poured?",
+    "expected_ko_id": "MOCK-KO-005",
+    "filters": {
+      "stage": "Pre-Slab",
+      "trade": "Plumbing",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-006",
+    "question": "What should I consider when preparing wall framing in wet areas?",
+    "expected_ko_id": "MOCK-KO-006",
+    "filters": {
+      "stage": "Wall Framing",
+      "trade": "Carpentry",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-007",
+    "question": "Why does the order of construction work matter before something is concealed?",
+    "expected_ko_id": "MOCK-KO-007",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-008",
+    "question": "What should I consider when setting out a wall frame?",
+    "expected_ko_id": "MOCK-KO-008",
+    "filters": {
+      "stage": "Wall Framing",
+      "trade": "Carpentry",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-009",
+    "question": "Why should evidence be captured before construction work is covered?",
+    "expected_ko_id": "MOCK-KO-009",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-010",
+    "question": "How can one construction decision depend on another?",
+    "expected_ko_id": "MOCK-KO-010",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-011",
+    "question": "How should stud spacing and wall framing layout be checked?",
+    "expected_ko_id": "MOCK-KO-016",
+    "filters": {
+      "stage": "Wall Framing",
+      "trade": "Carpentry",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-012",
+    "question": "What should be checked to maintain load path continuity at wall top plates?",
+    "expected_ko_id": "MOCK-KO-017",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-013",
+    "question": "What needs to be ready before under-slab drainage testing?",
+    "expected_ko_id": "MOCK-KO-018",
+    "filters": {
+      "stage": "Pre-Slab",
+      "trade": "Plumbing",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-014",
+    "question": "How should sanitary drain routes be coordinated before slab work?",
+    "expected_ko_id": "MOCK-KO-019",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-015",
+    "question": "What should workers understand during site induction before starting work?",
+    "expected_ko_id": "MOCK-KO-020",
+    "filters": {
+      "stage": "Site Management",
+      "trade": "General Building",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-016",
+    "question": "How should safety-critical concerns be escalated on a construction site?",
+    "expected_ko_id": "MOCK-KO-021",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-017",
+    "question": "How should pedestrian movement be managed around mobile plant?",
+    "expected_ko_id": "MOCK-KO-022",
+    "filters": {
+      "stage": "Site Management",
+      "trade": "General Building",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-018",
+    "question": "What should happen if unexpected hazards are discovered during excavation?",
+    "expected_ko_id": "MOCK-KO-023",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-019",
+    "question": "How should roof catchment areas and roof drainage be coordinated?",
+    "expected_ko_id": "MOCK-KO-024",
+    "filters": {
+      "stage": "Roofing",
+      "trade": "Roofing",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-020",
+    "question": "What should be considered when providing overflow for roof drainage?",
+    "expected_ko_id": "MOCK-KO-025",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-021",
+    "question": "How do I check the intended fall and drainage direction of gutters?",
+    "expected_ko_id": "MOCK-KO-026",
+    "filters": {
+      "stage": "Roofing",
+      "trade": "Roofing",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-022",
+    "question": "How can roof sheets be protected from damage during nearby work?",
+    "expected_ko_id": "MOCK-KO-027",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-023",
+    "question": "What needs to be complete before internal lining work starts?",
+    "expected_ko_id": "MOCK-KO-028",
+    "filters": {
+      "stage": "Internal Linings",
+      "trade": "Plastering",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-024",
+    "question": "How should ceiling lining be sequenced with overhead services?",
+    "expected_ko_id": "MOCK-KO-029",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-025",
+    "question": "What should be checked before finishing a wet-area substrate?",
+    "expected_ko_id": "MOCK-KO-030",
+    "filters": {
+      "stage": "Internal Linings",
+      "trade": "Plastering",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-026",
+    "question": "How should dust exposure be managed when multiple trades are working?",
+    "expected_ko_id": "MOCK-KO-031",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-027",
+    "question": "What should be coordinated when planning electrical component locations?",
+    "expected_ko_id": "MOCK-KO-032",
+    "filters": {
+      "stage": "Electrical Rough-In",
+      "trade": "Electrical",
+      "jurisdiction": "SA",
+      "learner_level": "Foundation"
+    }
+  },
+  {
+    "test_id": "RET-028",
+    "question": "What extra considerations apply to electrical positions in wet areas?",
+    "expected_ko_id": "MOCK-KO-033",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-029",
+    "question": "How should electrical cable routes be coordinated with framing penetrations?",
+    "expected_ko_id": "MOCK-KO-034",
+    "filters": {
+      "stage": "Electrical Rough-In",
+      "trade": "Electrical",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-030",
+    "question": "What electrical rough-in evidence should be recorded before lining?",
+    "expected_ko_id": "MOCK-KO-035",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-031",
+    "question": "What needs to be verified before electrical systems are energised?",
+    "expected_ko_id": "MOCK-KO-036",
+    "filters": {
+      "stage": "Electrical Fit-Off",
+      "trade": "Electrical",
+      "jurisdiction": "SA",
+      "learner_level": "Advanced"
+    }
+  },
+  {
+    "test_id": "RET-032",
+    "question": "What design inputs should be considered for residential HVAC capacity selection?",
+    "expected_ko_id": "MOCK-KO-037",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-033",
+    "question": "What needs to be coordinated before HVAC first-fix work is concealed?",
+    "expected_ko_id": "MOCK-KO-038",
+    "filters": {
+      "stage": "HVAC",
+      "trade": "Mechanical Services",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-034",
+    "question": "How should supply and return air locations be coordinated?",
+    "expected_ko_id": "MOCK-KO-039",
+    "filters": {}
+  },
+  {
+    "test_id": "RET-035",
+    "question": "What should be considered when planning HVAC duct routes and future access?",
+    "expected_ko_id": "MOCK-KO-040",
+    "filters": {
+      "stage": "HVAC",
+      "trade": "Mechanical Services",
+      "jurisdiction": "SA",
+      "learner_level": "Intermediate"
+    }
+  },
+  {
+    "test_id": "RET-036",
+    "question": "How should solar panels be installed?",
+    "expected_ko_id": null,
+    "filters": {}
+  },
+  {
+    "test_id": "RET-037",
+    "question": "What exact air-conditioner capacity in kilowatts is required for my specific house without any building measurements?",
+    "expected_ko_id": null,
+    "filters": {}
+  },
+  {
+    "test_id": "RET-038",
+    "question": "What is the best way to improve the energy efficiency of a house?",
+    "expected_ko_id": null,
+    "filters": {}
+  },
+  {
+    "test_id": "RET-039",
+    "question": "Which exterior paint should I use?",
+    "expected_ko_id": null,
+    "filters": {}
+  },
+  {
+    "test_id": "RET-040",
+    "question": "How should a swimming pool filtration system be installed?",
+    "expected_ko_id": null,
+    "filters": {}
+  }
+]

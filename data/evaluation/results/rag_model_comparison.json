@@ -1,0 +1,1003 @@
+{
+  "evaluations": [
+    {
+      "model": "qwen3:4b-q4_K_M",
+      "benchmark_type": "fixed_evidence_synthetic",
+      "cases": 40,
+      "answerable_cases": 35,
+      "zero_evidence_cases": 5,
+      "expected_citation_present": 35,
+      "cases_with_unsupported_citations": 0,
+      "zero_evidence_unsupported_citation_cases": 0,
+      "zero_evidence_refusals_detected": 5,
+      "manual_review_required_cases": 35,
+      "mean_latency_seconds": 5.923,
+      "median_latency_seconds": 6.664,
+      "input_tokens": 11848,
+      "output_tokens": 4095,
+      "estimated_api_cost_usd": "0",
+      "case_details": [
+        {
+          "test_id": "RET-001",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 8.062
+        },
+        {
+          "test_id": "RET-002",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.213
+        },
+        {
+          "test_id": "RET-003",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 8.403
+        },
+        {
+          "test_id": "RET-004",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.809
+        },
+        {
+          "test_id": "RET-005",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.77
+        },
+        {
+          "test_id": "RET-006",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.352
+        },
+        {
+          "test_id": "RET-007",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.038
+        },
+        {
+          "test_id": "RET-008",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.813
+        },
+        {
+          "test_id": "RET-009",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.731
+        },
+        {
+          "test_id": "RET-010",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.25
+        },
+        {
+          "test_id": "RET-011",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.109
+        },
+        {
+          "test_id": "RET-012",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.444
+        },
+        {
+          "test_id": "RET-013",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.174
+        },
+        {
+          "test_id": "RET-014",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.666
+        },
+        {
+          "test_id": "RET-015",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.662
+        },
+        {
+          "test_id": "RET-016",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.331
+        },
+        {
+          "test_id": "RET-017",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.103
+        },
+        {
+          "test_id": "RET-018",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 3.801
+        },
+        {
+          "test_id": "RET-019",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.386
+        },
+        {
+          "test_id": "RET-020",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.536
+        },
+        {
+          "test_id": "RET-021",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.316
+        },
+        {
+          "test_id": "RET-022",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.599
+        },
+        {
+          "test_id": "RET-023",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.998
+        },
+        {
+          "test_id": "RET-024",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.017
+        },
+        {
+          "test_id": "RET-025",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.68
+        },
+        {
+          "test_id": "RET-026",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.488
+        },
+        {
+          "test_id": "RET-027",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.575
+        },
+        {
+          "test_id": "RET-028",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.345
+        },
+        {
+          "test_id": "RET-029",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 3.959
+        },
+        {
+          "test_id": "RET-030",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.946
+        },
+        {
+          "test_id": "RET-031",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.644
+        },
+        {
+          "test_id": "RET-032",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.881
+        },
+        {
+          "test_id": "RET-033",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.697
+        },
+        {
+          "test_id": "RET-034",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.237
+        },
+        {
+          "test_id": "RET-035",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.431
+        },
+        {
+          "test_id": "RET-036",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [],
+          "refusal_detected": true,
+          "manual_review_required": false,
+          "review_reasons": [],
+          "latency_seconds": 1.509
+        },
+        {
+          "test_id": "RET-037",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [],
+          "refusal_detected": true,
+          "manual_review_required": false,
+          "review_reasons": [],
+          "latency_seconds": 1.804
+        },
+        {
+          "test_id": "RET-038",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [],
+          "refusal_detected": true,
+          "manual_review_required": false,
+          "review_reasons": [],
+          "latency_seconds": 1.997
+        },
+        {
+          "test_id": "RET-039",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [],
+          "refusal_detected": true,
+          "manual_review_required": false,
+          "review_reasons": [],
+          "latency_seconds": 1.683
+        },
+        {
+          "test_id": "RET-040",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [],
+          "refusal_detected": true,
+          "manual_review_required": false,
+          "review_reasons": [],
+          "latency_seconds": 1.442
+        }
+      ]
+    },
+    {
+      "model": "gemma3:4b",
+      "benchmark_type": "fixed_evidence_synthetic",
+      "cases": 40,
+      "answerable_cases": 35,
+      "zero_evidence_cases": 5,
+      "expected_citation_present": 35,
+      "cases_with_unsupported_citations": 5,
+      "zero_evidence_unsupported_citation_cases": 5,
+      "zero_evidence_refusals_detected": 5,
+      "manual_review_required_cases": 40,
+      "mean_latency_seconds": 5.149,
+      "median_latency_seconds": 5.585,
+      "input_tokens": 12157,
+      "output_tokens": 3300,
+      "estimated_api_cost_usd": "0",
+      "case_details": [
+        {
+          "test_id": "RET-001",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.849
+        },
+        {
+          "test_id": "RET-002",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.144
+        },
+        {
+          "test_id": "RET-003",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.34
+        },
+        {
+          "test_id": "RET-004",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.917
+        },
+        {
+          "test_id": "RET-005",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.699
+        },
+        {
+          "test_id": "RET-006",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.582
+        },
+        {
+          "test_id": "RET-007",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.341
+        },
+        {
+          "test_id": "RET-008",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.634
+        },
+        {
+          "test_id": "RET-009",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.636
+        },
+        {
+          "test_id": "RET-010",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 7.456
+        },
+        {
+          "test_id": "RET-011",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.026
+        },
+        {
+          "test_id": "RET-012",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.422
+        },
+        {
+          "test_id": "RET-013",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.595
+        },
+        {
+          "test_id": "RET-014",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.664
+        },
+        {
+          "test_id": "RET-015",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.287
+        },
+        {
+          "test_id": "RET-016",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.782
+        },
+        {
+          "test_id": "RET-017",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.74
+        },
+        {
+          "test_id": "RET-018",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 3.571
+        },
+        {
+          "test_id": "RET-019",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.72
+        },
+        {
+          "test_id": "RET-020",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 8.622
+        },
+        {
+          "test_id": "RET-021",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.173
+        },
+        {
+          "test_id": "RET-022",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.879
+        },
+        {
+          "test_id": "RET-023",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.241
+        },
+        {
+          "test_id": "RET-024",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 3.335
+        },
+        {
+          "test_id": "RET-025",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.861
+        },
+        {
+          "test_id": "RET-026",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.092
+        },
+        {
+          "test_id": "RET-027",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.01
+        },
+        {
+          "test_id": "RET-028",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.151
+        },
+        {
+          "test_id": "RET-029",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.62
+        },
+        {
+          "test_id": "RET-030",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.19
+        },
+        {
+          "test_id": "RET-031",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 4.54
+        },
+        {
+          "test_id": "RET-032",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.094
+        },
+        {
+          "test_id": "RET-033",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 6.152
+        },
+        {
+          "test_id": "RET-034",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.589
+        },
+        {
+          "test_id": "RET-035",
+          "scenario": "answerable_candidate",
+          "expected_citation_present": true,
+          "unsupported_citations": [],
+          "refusal_detected": false,
+          "manual_review_required": true,
+          "review_reasons": [
+            "human_claim_level_grounding_review"
+          ],
+          "latency_seconds": 5.422
+        },
+        {
+          "test_id": "RET-036",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [
+            "MOCK-KO-001"
+          ],
+          "refusal_detected": true,
+          "manual_review_required": true,
+          "review_reasons": [
+            "unsupported_ko_citation"
+          ],
+          "latency_seconds": 1.604
+        },
+        {
+          "test_id": "RET-037",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [
+            "MOCK-KO-001"
+          ],
+          "refusal_detected": true,
+          "manual_review_required": true,
+          "review_reasons": [
+            "unsupported_ko_citation"
+          ],
+          "latency_seconds": 2.205
+        },
+        {
+          "test_id": "RET-038",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [
+            "MOCK-KO-001"
+          ],
+          "refusal_detected": true,
+          "manual_review_required": true,
+          "review_reasons": [
+            "unsupported_ko_citation"
+          ],
+          "latency_seconds": 1.626
+        },
+        {
+          "test_id": "RET-039",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [
+            "MOCK-KO-001"
+          ],
+          "refusal_detected": true,
+          "manual_review_required": true,
+          "review_reasons": [
+            "unsupported_ko_citation"
+          ],
+          "latency_seconds": 1.465
+        },
+        {
+          "test_id": "RET-040",
+          "scenario": "insufficient_zero_evidence",
+          "expected_citation_present": false,
+          "unsupported_citations": [
+            "MOCK-KO-001"
+          ],
+          "refusal_detected": true,
+          "manual_review_required": true,
+          "review_reasons": [
+            "unsupported_ko_citation"
+          ],
+          "latency_seconds": 1.673
+        }
+      ]
+    }
+  ],
+  "note": "Citation IDs and refusal wording are heuristic checks, not factual groundedness judgments."
+}
