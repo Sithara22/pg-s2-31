@@ -73,5 +73,29 @@ error is logged in the server terminal.
 The API allows browser requests from `localhost` and `127.0.0.1` on ports 5173
 and 3000. Use `http://127.0.0.1:8000` as the frontend API base URL. Send JSON to
 `/ask`, show a loading state while waiting, then display the answer and sources.
-Check HTTP errors before reading an answer. This is a single-question local demo
-using synthetic knowledge, without conversation memory or authentication.
+Check HTTP errors before reading an answer. This is a local demo using synthetic knowledge without authentication.
+Conversation context is supplied by the frontend; the server stores no chat sessions.
+
+
+## Conversation context
+
+`POST /ask` also accepts an optional `history` array. Existing question-only
+requests still work. Each entry has `role` (`user` or `assistant`) and `content`.
+Send at most six messages (three complete exchanges), in chronological order,
+excluding the current question. Each message is limited to 6,000 characters.
+
+```json
+{
+  "question": "What evidence should I record for that?",
+  "history": [
+    {"role": "user", "content": "What should I check before a slab pour?"},
+    {"role": "assistant", "content": "The previous tutor answer goes here."}
+  ]
+}
+```
+
+When history exists, Qwen rewrites the question to resolve conversational references.
+MiniLM searches using that standalone question. Answer generation receives the
+resolved question and newly retrieved evidence, not previous answers as evidence.
+The response format stays the same. Follow-ups require two model calls instead of
+one, each with a 120-second timeout. Restart FastAPI after updating the code.

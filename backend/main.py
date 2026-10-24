@@ -37,10 +37,18 @@ app.add_middleware(
 )
 
 
+class ChatMessage(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True)
+
+    role: Literal["user", "assistant"]
+    content: str = Field(min_length=1, max_length=6000)
+
+
 class QuestionRequest(BaseModel):
     model_config = ConfigDict(str_strip_whitespace=True)
 
     question: str = Field(min_length=1, max_length=2000)
+    history: list[ChatMessage] = Field(default_factory=list, max_length=6)
     stage: str | None = None
     trade: str | None = None
     jurisdiction: str | None = None

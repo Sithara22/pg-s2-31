@@ -53,3 +53,13 @@ footer { margin-top: 48px; color: #707070; font-size: 11px; padding: 20px 0; bor
 footer span { margin: 0 12px; }
 @media (max-width: 560px) { .header { padding: 0 22px; height: 76px; } .header-caption { font-size: 11px; } main { padding: 36px 18px 12px; } .question-card, .answer-card { padding: 20px; } .form-footer { align-items: stretch; flex-direction: column; } .ask-button { justify-content: center; } .examples > div { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+.header-actions { display: flex; align-items: center; gap: 20px; }
+.new-chat { border: 1px solid #d7d7d7; background: white; color: #191919; padding: 9px 14px; border-radius: 8px; font-size: 13px; }
+.new-chat:hover:not(:disabled) { border-color: #c9202e; color: #c9202e; }
+.conversation { margin-bottom: 24px; }
+.chat-turn { margin-bottom: 28px; }
+.user-message { background: #fce9eb; border-radius: 12px 12px 2px 12px; padding: 18px 22px; margin-left: 12%; }
+.user-message span { font-size: 11px; color: #a71925; font-weight: 700; }
+.user-message p { margin: 8px 0 0; line-height: 1.7; white-space: pre-wrap; overflow-wrap: anywhere; }
+.chat-turn .answer-card { margin-top: 14px; }
+@media (max-width: 560px) { .header-actions .header-caption { display: none; } .user-message { margin-left: 5%; } }
