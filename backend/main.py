@@ -74,16 +74,11 @@ def health():
 @app.post("/ask", response_model=AnswerResponse)
 def ask(body: QuestionRequest, request: Request):
     """Run the existing RAG pipeline with its default top-three retrieval."""
-    print("[API 1] Starting RAG Model", flush=True)
     rag = request.app.state.rag
     try:
-        print("[API 2] POST /ask received", flush=True)
-
-        print("[API 3] Opening PostgreSQL connection", flush=True)
 
         connection = rag.get_database_connection()
 
-        print("[API 4] PostgreSQL connected", flush=True)
         try:
             return rag.answer_question(
                 **body.model_dump(),

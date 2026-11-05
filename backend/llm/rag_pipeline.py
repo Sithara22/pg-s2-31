@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import time
 
 from backend.embeddings.embedding_client import RemoteEmbeddingModel
 from backend.llm.llm_client import query_llm, LLM_MODEL
@@ -139,19 +138,11 @@ def answer_question(
 ) -> dict:
     """Retrieve evidence and generate a citation-checked answer."""
 
-    
-    print("[RAG 1] answer_question() entered", flush=True)
-    print(f"[RAG 2] Question: {question}", flush=True)
-
-    start = time.perf_counter()
-
     if not question.strip():
         raise ValueError("Question cannot be empty.")
 
     if top_k < 1:
         raise ValueError("top_k must be at least 1.")
-
-    print("[RAG 3] Starting semantic search", flush=True)
 
     results = semantic_search_pgvector(
         query=question,
@@ -163,13 +154,6 @@ def answer_question(
         jurisdiction=jurisdiction,
         learner_level=learner_level,
     )
-
-    print(
-        f"[RAG 4] Search completed in "
-        f"{time.perf_counter() - start:.2f}s",
-        flush=True
-    )
-    print(f"[RAG 5] Retrieved {len(results)} EKOs", flush=True)
 
     if not results:
         return {
@@ -196,17 +180,6 @@ def answer_question(
         "Return the required JSON object. "
         "Answer only when the supplied evidence supports the answer."
     )
-
-    print(evidence , "\n")
-    print(question)
-
-    
-    print("[RAG 6] Evidence prepared", flush=True)
-    print(evidence, flush=True)
-
-    print("[RAG 7] Calling Groq Qwen API", flush=True)
-    llm_start = time.perf_counter()
-
 
     output = query_llm(
         model_input={
