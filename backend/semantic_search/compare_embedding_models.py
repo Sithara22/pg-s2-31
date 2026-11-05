@@ -3,7 +3,7 @@ import time
 from pathlib import Path
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from backend.embeddings.embedding_client import RemoteEmbeddingModel
 
 
 # ---------------------------------------------------------
@@ -88,7 +88,7 @@ def evaluate_model(
 
     start_time = time.perf_counter()
 
-    model = SentenceTransformer(model_name)
+    model = RemoteEmbeddingModel(model_name)
 
     model_load_time = time.perf_counter() - start_time
 

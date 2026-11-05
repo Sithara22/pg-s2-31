@@ -16,7 +16,9 @@ async def lifespan(app: FastAPI):
     from backend.llm import rag_pipeline
 
     app.state.rag = rag_pipeline
-    app.state.embedding_model = rag_pipeline.SentenceTransformer(rag_pipeline.MODEL_NAME)
+    app.state.embedding_model = rag_pipeline.RemoteEmbeddingModel(
+        rag_pipeline.MODEL_NAME
+    )
     yield
     del app.state.embedding_model
 
@@ -72,9 +74,16 @@ def health():
 @app.post("/ask", response_model=AnswerResponse)
 def ask(body: QuestionRequest, request: Request):
     """Run the existing RAG pipeline with its default top-three retrieval."""
+    print("[API 1] Starting RAG Model", flush=True)
     rag = request.app.state.rag
     try:
+        print("[API 2] POST /ask received", flush=True)
+
+        print("[API 3] Opening PostgreSQL connection", flush=True)
+
         connection = rag.get_database_connection()
+
+        print("[API 4] PostgreSQL connected", flush=True)
         try:
             return rag.answer_question(
                 **body.model_dump(),
@@ -87,5 +96,5 @@ def ask(body: QuestionRequest, request: Request):
         logger.exception("RAG request failed")
         raise HTTPException(
             status_code=503,
-            detail="Unable to answer right now. Check PostgreSQL and Ollama, then try again.",
+            detail="Unable to answer right now. Check PostgreSQL and the Hugging Face API, then try again.",
         ) from exc
