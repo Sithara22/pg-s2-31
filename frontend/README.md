@@ -40,6 +40,13 @@ Builds the app into `dist/`. `npm run preview` serves that build on port 5173
 
 ## Follow-up questions
 
+Filtering is controlled only by TEAM2A_MODE in the backend environment.
+The demo requires the full context JSON supplied by Team 1A before submitting a
+question, in both modes. Paste that object into **Model context from Team 1A**.
+See backend/integration/README.md for the required fields. There is no UI toggle;
+the frontend sends question, history and context. Automatic context delivery
+from Team 1A is not connected yet.
+
 Ask an initial question, then refer to it naturally (for example, “What evidence
 should I record for that?”). The backend uses recent messages to resolve the
 question before retrieving fresh EKO evidence. Older messages remain visible,

@@ -1,101 +1,47 @@
 # Local demo backend
 
-This minimal FastAPI application wraps the existing RAG pipeline. It uses the
-same `.env`, PostgreSQL index and Ollama model as the working CLI. Run commands
-from the repository root, in your existing RAG Python environment (Python 3.10+).
-
-## Install and start
-
-Keep PostgreSQL and Ollama running with `qwen3:4b-q4_K_M` available, then run:
+The FastAPI backend wraps the existing RAG pipeline. Start PostgreSQL and
+Ollama with qwen3:4b-q4_K_M available, install backend/requirements.txt, then run
+from the repository root:
 
 ```bash
-python -m pip install -r backend/requirements.txt
 python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
 ```
 
-Wait for `Application startup complete`. MiniLM loads once at startup and is
-reused for questions. Each question opens and closes its own database connection.
-Stop with Ctrl+C. Restart after code changes. Use one server worker for this demo.
+Use one worker. MiniLM loads once at startup; each question opens and closes its
+own database connection. GET /health checks API liveness only.
 
-Open http://127.0.0.1:8000/docs to try requests in the browser:
-expand `POST /ask`, click **Try it out**, enter a request and click **Execute**.
+## Team 1A questions
 
-## Endpoints
+POST /ask requires a question and a complete Team 1A context in both modes.
+See the [request example and provisional contract](integration/README.md#team-1a-request-with-filtering-off-for-now).
+Question-only requests now return HTTP 422. All seven context fields in the
+example are required. This intentionally replaces the earlier optional context.
 
-- `GET /health`: returns `{"status":"ok"}` when the API is running. This is not
-  a PostgreSQL/Ollama readiness check.
-- `POST /ask`: accepts a question and optional exact-match metadata filters.
-  Retrieval uses the pipeline's default top three results.
+The only toggle is TEAM2A_MODE in the root .env or server environment:
 
-Minimal request:
+- disabled: skip Team 2A and retrieve from the existing local index.
+- api: send question/context to Team 2A and retrieve only eligible IDs.
 
-```json
-{"question": "How do I stop a newly installed wall frame from moving?"}
-```
+Restart the backend after changing this setting. Callers cannot override it.
+The use_2a_filtering request field is no longer accepted. Context remains
+required and validated even when Team 2A is disabled. Existing optional top-level
+stage, trade, jurisdiction and learner_level filters still narrow local search.
 
-Request with optional filters:
-
-```json
-{
-  "question": "How do I stop a newly installed wall frame from moving?",
-  "stage": "Wall Framing",
-  "trade": "Carpentry",
-  "jurisdiction": "SA",
-  "learner_level": "Foundation"
-}
-```
-
-Terminal example:
-
-```bash
-curl http://127.0.0.1:8000/ask \
-  -H 'Content-Type: application/json' \
-  -d '{"question":"How do I stop a newly installed wall frame from moving?"}'
-```
-
-Response fields:
-
-| Field | Meaning |
-|---|---|
-| `answer` | Generated answer or the pipeline's fallback/refusal text |
-| `status` | `answered`, `insufficient_evidence`, `invalid_model_response`, or `citation_validation_failed` |
-| `sources` | List of cited EKO IDs |
-| `retrieval` | Retrieved EKO IDs, titles and similarity scores |
-
-The frontend can match `sources` against `retrieval` to show cited source titles.
-Full EKO text is not returned by this minimal endpoint. Refusals and validation
-fallbacks return HTTP 200 with the corresponding `status`. Invalid input returns
-HTTP 422. Pipeline exceptions return HTTP 503 with a `detail` message; the full
-error is logged in the server terminal.
-
-## Frontend integration later
-
-The API allows browser requests from `localhost` and `127.0.0.1` on ports 5173
-and 3000. Use `http://127.0.0.1:8000` as the frontend API base URL. Send JSON to
-`/ask`, show a loading state while waiting, then display the answer and sources.
-Check HTTP errors before reading an answer. This is a local demo using synthetic knowledge without authentication.
-Conversation context is supplied by the frontend; the server stores no chat sessions.
-
+The response remains answer, status, sources and retrieval. Status is answered,
+insufficient_evidence, invalid_model_response or citation_validation_failed.
+Invalid requests return 422; unavailable dependencies return 503. An empty 2A
+allowlist returns insufficient evidence without unrestricted search.
 
 ## Conversation context
 
-`POST /ask` also accepts an optional `history` array. Existing question-only
-requests still work. Each entry has `role` (`user` or `assistant`) and `content`.
-Send at most six messages (three complete exchanges), in chronological order,
-excluding the current question. Each message is limited to 6,000 characters.
+An optional history array accepts up to six messages (three exchanges), each
+with role user/assistant and content of at most 6000 characters. The current
+question is excluded from history. Qwen resolves follow-up references before
+fresh retrieval. Prior answers are not evidence. The server stores no chats.
 
-```json
-{
-  "question": "What evidence should I record for that?",
-  "history": [
-    {"role": "user", "content": "What should I check before a slab pour?"},
-    {"role": "assistant", "content": "The previous tutor answer goes here."}
-  ]
-}
-```
+## Browser access
 
-When history exists, Qwen rewrites the question to resolve conversational references.
-MiniLM searches using that standalone question. Answer generation receives the
-resolved question and newly retrieved evidence, not previous answers as evidence.
-The response format stays the same. Follow-ups require two model calls instead of
-one, each with a 120-second timeout. Restart FastAPI after updating the code.
+CORS permits localhost and 127.0.0.1 on ports 5173 and 3000. The API runs on
+port 8000 by default; /docs exposes the request schema. Any different Team 1A
+origin must be explicitly configured before browser integration.

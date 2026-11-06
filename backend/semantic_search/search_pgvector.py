@@ -64,6 +64,7 @@ def semantic_search_pgvector(
     trade: str | None = None,
     jurisdiction: str | None = None,
     learner_level: str | None = None,
+    eligible_ko_ids: list[str] | None = None,
 ) -> list[dict]:
     """
     Perform semantic search with optional metadata filters.
@@ -83,6 +84,10 @@ def semantic_search_pgvector(
     if top_k < 1:
         raise ValueError("top_k must be at least 1.")
 
+    # None preserves the local demo; an empty allowlist must never broaden search.
+    if eligible_ko_ids is not None and not eligible_ko_ids:
+        return []
+
     # Convert learner question into an embedding.
     query_embedding = model.encode(
         query,
@@ -96,6 +101,10 @@ def semantic_search_pgvector(
 
     conditions = []
     filter_values = []
+
+    if eligible_ko_ids is not None:
+        conditions.append("ko_id = ANY(%s::text[])")
+        filter_values.append(eligible_ko_ids)
 
     if stage:
         conditions.append("stage = %s")

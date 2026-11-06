@@ -39,6 +39,8 @@ Citation and response validation
 
 ## Documentation
 
+- [Team 2A integration preparation](backend/integration/README.md) — provisional bulk ingestion, query-time eligibility and restricted retrieval; actual Team 2A contract pending.
+
 - [Semantic Search](backend/semantic_search/README.md) — environment setup, embedding generation, pgvector indexing, semantic retrieval, and retrieval evaluation.
 - [RAG Pipeline](backend/llm/README.md) — local model setup, end-to-end question answering, citation validation, model comparison, and RAG evaluation.
 

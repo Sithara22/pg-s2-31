@@ -1,0 +1,18 @@
+{
+  "complete": true,
+  "ekos": [
+    {
+      "ko_id": "EKO-001-v1",
+      "logical_ko_id": "EKO-001",
+      "title": "Synthetic pre-pour record",
+      "l1": "This is synthetic integration test content.",
+      "l2": "Record the inspection outcome before the pour.",
+      "l3": "", "l4": "", "l5": "",
+      "stage": "Slab", "trade": "Concrete", "jurisdiction": "SA",
+      "learner_level": "Foundation", "publication_status": "published",
+      "validation_status": "validated", "ai_indexable": true,
+      "viewer_exposable": true, "is_current": true, "superseded": false,
+      "version": 1
+    }
+  ]
+}

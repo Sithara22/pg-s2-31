@@ -20,11 +20,20 @@ function App() {
   const endRef = useRef(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [contextInput, setContextInput] = useState('');
   useEffect(() => { endRef.current?.scrollIntoView({ block: 'nearest' }); }, [turns, loading]);
 
   async function ask(event) {
     event.preventDefault();
     if (!question.trim() || loading) return;
+    let context;
+    try {
+      context = JSON.parse(contextInput);
+      if (!context || typeof context !== 'object' || Array.isArray(context)) throw new Error();
+    } catch {
+      setError('Paste a valid context JSON object from Team 1A before asking a question.');
+      return;
+    }
     setLoading(true);
     setError('');
     const submitted = question.trim();
@@ -40,7 +49,7 @@ function App() {
       const response = await fetch(`${API}/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: submitted, history }),
+        body: JSON.stringify({ question: submitted, history, context }),
         signal: controller.signal,
       });
       const data = await response.json().catch(() => null);
@@ -73,7 +82,7 @@ function App() {
     const sources = result ? result.sources.map(id => ({
       id, title: result.retrieval.find(item => item.ko_id === id)?.title || id,
     })) : [];
-    const answer = result?.answer.split(/(\[MOCK-KO-\d+\])/g).map((part, index) => {
+    const answer = result?.answer.split(/(\[[A-Za-z0-9][A-Za-z0-9_.:-]*\])/g).map((part, index) => {
       const id = part.slice(1, -1);
       return sources.some(source => source.id === id)
         ? <a className="citation" key={index} href={`#source-${turnIndex}-${id}`}>{part}</a>
@@ -116,6 +125,11 @@ function App() {
         </div>
         <section className="question-card" aria-label="Ask SiteSeer">
           <form onSubmit={ask}>
+            <label htmlFor="model-context">Model context from Team 1A</label>
+            <textarea id="model-context" value={contextInput}
+              onChange={event => setContextInput(event.target.value)}
+              placeholder="Paste the context JSON object supplied by Team 1A"
+              required disabled={loading} rows={3} />
             <label htmlFor="question">{turns.length ? 'Ask a follow-up question' : 'What would you like to know?'}</label>
             <textarea id="question" value={question} onChange={e => setQuestion(e.target.value)}
               placeholder="For example, what should I check before a slab pour?"
