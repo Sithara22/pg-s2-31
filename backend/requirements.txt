@@ -1,4 +1,5 @@
-sentence-transformers
+huggingface-hub>=0.31,<2
+groq
 numpy
 psycopg[binary]
 pgvector

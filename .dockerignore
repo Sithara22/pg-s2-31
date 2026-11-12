@@ -1,0 +1,8 @@
+**
+!backend/
+!backend/**
+backend/**/__pycache__/
+backend/**/.env*
+!data/
+!data/processed/
+!data/processed/search_ready_ekos.json

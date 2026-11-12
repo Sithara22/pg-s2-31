@@ -4,7 +4,27 @@ This minimal FastAPI application wraps the existing RAG pipeline. It uses the
 same `.env`, PostgreSQL index and Ollama model as the working CLI. Run commands
 from the repository root, in your existing RAG Python environment (Python 3.10+).
 
-## Install and start
+## Configure Docker Compose
+
+On the VM, create `.env` beside `compose.yaml` if it does not exist:
+
+```bash
+install -m 600 .env.example .env
+nano .env
+```
+
+Set `DB_PASSWORD` and `HF_TOKEN`. Choose `LLM_PROVIDER=huggingface`
+or set `LLM_PROVIDER=groq` and provide `GROQ_API_KEY`. Hugging Face supplies
+embeddings for both providers. Compose loads the file into the API container's
+environment and overrides `DB_HOST` with `db` so it can reach PostgreSQL.
+The file stays on the VM and is excluded from the image build.
+
+After changing an inference token or provider, apply it with
+`sudo docker compose up -d --force-recreate api`. For an existing database
+volume, changing `DB_PASSWORD` in the file also requires rotating the password
+in PostgreSQL.
+
+## Install and start locally
 
 Keep PostgreSQL and Ollama running with `qwen3:4b-q4_K_M` available, then run:
 

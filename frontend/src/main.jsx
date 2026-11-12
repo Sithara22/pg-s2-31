@@ -3,6 +3,9 @@ import { createRoot } from 'react-dom/client';
 import './styles.css';
 
 const API = (import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000').replace(/\/$/, '');
+
+console.log(import.meta.env.VITE_API_URL);
+
 const examples = [
   'What evidence should be recorded before a concrete slab pour?',
   'How do I stop a newly installed wall frame from moving?',
