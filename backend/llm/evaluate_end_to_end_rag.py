@@ -25,6 +25,7 @@ DEFAULT_OUTPUT = ROOT / "data/evaluation/results/end_to_end_qwen3_4b.json"
 
 FILTER_KEYS = {"stage", "trade", "jurisdiction", "learner_level"}
 VALID_STATUSES = {
+    "conversational",
     "answered",
     "insufficient_evidence",
     "citation_validation_failed",

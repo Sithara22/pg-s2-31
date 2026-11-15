@@ -99,3 +99,25 @@ MiniLM searches using that standalone question. Answer generation receives the
 resolved question and newly retrieved evidence, not previous answers as evidence.
 The response format stays the same. Follow-ups require two model calls instead of
 one, each with a 120-second timeout. Restart FastAPI after updating the code.
+
+
+## Conversational routing
+
+The API also returns `status: "conversational"` with empty `sources` and
+`retrieval` for greetings, small talk, assistant-help and out-of-scope replies.
+Common whole-message greetings are answered directly without PostgreSQL/Ollama.
+Other messages use a Qwen intent classification before retrieval; construction
+questions and contextual follow-ups continue through RAG. Unrelated questions
+receive a scope explanation rather than an unrelated construction answer.
+Malformed classification output asks for clarification. Classification is
+model-based and needs live evaluation; it can occasionally misroute messages.
+
+Ordinary construction questions now use two model calls (routing and answering);
+contextual follow-ups can use three (including rewriting), each with a 120-second
+timeout. The frontend allows seven minutes. No new dependency is required.
+
+Check routing logic with:
+
+```bash
+python -B -m unittest backend.llm.test_conversation -v
+```
