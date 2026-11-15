@@ -1,5 +1,4 @@
-
-"""SiteSeer 2B: local retrieval-augmented question answering."""
+"""SiteSeer 2B: API-based retrieval-augmented question answering."""
 
 from __future__ import annotations
 
@@ -17,17 +16,12 @@ from backend.semantic_search.search_pgvector import (
     semantic_search_pgvector,
 )
 
-
-OLLAMA_MODEL = "qwen3:4b-q4_K_M"
-
 INSUFFICIENT_EVIDENCE = (
-    "The available EKO evidence is insufficient "
-    "to answer this question."
+    "The available EKO evidence is insufficient " "to answer this question."
 )
 
 SAFE_FALLBACK = (
-    "A verified answer could not be produced from "
-    "the available EKO evidence."
+    "A verified answer could not be produced from " "the available EKO evidence."
 )
 
 SYSTEM_PROMPT = """
@@ -94,15 +88,13 @@ def validate_citations(
     unsupported = all_ids - retrieved_ids
     if unsupported:
         raise ValueError(
-            "Answer references EKOs not retrieved: "
-            + ", ".join(sorted(unsupported))
+            "Answer references EKOs not retrieved: " + ", ".join(sorted(unsupported))
         )
 
     malformed = all_ids - cited_ids
     if malformed:
         raise ValueError(
-            "Answer contains malformed EKO citations: "
-            + ", ".join(sorted(malformed))
+            "Answer contains malformed EKO citations: " + ", ".join(sorted(malformed))
         )
 
     if not cited_ids:
@@ -121,9 +113,7 @@ def parse_model_response(raw_answer: str) -> dict:
         raise ValueError("Model response must be a JSON object.")
 
     if set(response) != {"status", "answer"}:
-        raise ValueError(
-            "Model response must contain only status and answer."
-        )
+        raise ValueError("Model response must contain only status and answer.")
 
     status = response["status"]
     answer = response["answer"]
@@ -167,7 +157,7 @@ def resolve_question(question: str, history: list[dict]) -> str:
 
 def answer_question(
     question: str,
-    embedding_model: SentenceTransformer,
+    embedding_model: RemoteEmbeddingModel,
     connection,
     top_k: int = 3,
     stage: str | None = None,
@@ -227,13 +217,11 @@ def answer_question(
         "Answer only when the supplied evidence supports the answer."
     )
 
-    output = query_ollama(
-        model=OLLAMA_MODEL,
+    output = query_llm(
         model_input={
             "system": SYSTEM_PROMPT,
             "user": user_prompt,
         },
-        timeout=120,
     )
 
     try:
@@ -277,17 +265,11 @@ def answer_question(
             "status": "citation_validation_failed",
         }
 
-    cited_ids = set(
-        re.findall(r"\[(MOCK-KO-\d+)\]", answer)
-    )
+    cited_ids = set(re.findall(r"\[(MOCK-KO-\d+)\]", answer))
 
     return {
         "answer": answer,
-        "sources": [
-            item["ko_id"]
-            for item in results
-            if item["ko_id"] in cited_ids
-        ],
+        "sources": [item["ko_id"] for item in results if item["ko_id"] in cited_ids],
         "retrieval": retrieval,
         "status": "answered",
     }
@@ -319,9 +301,9 @@ def main() -> None:
     print("SiteSeer 2B | Local RAG Pipeline")
     print("--------------------------------")
     print(f"Embedding model: {MODEL_NAME}")
-    print(f"Generation model: {OLLAMA_MODEL}")
+    print(f"Generation model: {LLM_MODEL}")
 
-    embedding_model = SentenceTransformer(MODEL_NAME)
+    embedding_model = RemoteEmbeddingModel(MODEL_NAME)
     connection = get_database_connection()
 
     try:

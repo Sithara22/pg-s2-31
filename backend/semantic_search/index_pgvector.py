@@ -59,6 +59,7 @@ def get_database_connection():
         user=db_user,
         host=db_host,
         port=db_port,
+        password = os.getenv("DB_PASSWORD")
     )
 
     register_vector(connection)

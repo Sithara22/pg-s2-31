@@ -2,8 +2,7 @@ import json
 from pathlib import Path
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
-
+from backend.embeddings.embedding_client import RemoteEmbeddingModel
 
 # ---------------------------------------------------------
 # Paths and model configuration
@@ -11,12 +10,7 @@ from sentence_transformers import SentenceTransformer
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
 
-INPUT_FILE = (
-    PROJECT_ROOT
-    / "data"
-    / "processed"
-    / "search_ready_ekos.json"
-)
+INPUT_FILE = PROJECT_ROOT / "data" / "processed" / "search_ready_ekos.json"
 
 OUTPUT_DIR = PROJECT_ROOT / "data" / "embeddings"
 
@@ -29,6 +23,7 @@ MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 # Load search-ready EKOs
 # ---------------------------------------------------------
 
+
 def load_search_ready_ekos() -> list[dict]:
     """
     Load the search-ready EKO records produced by the
@@ -36,22 +31,16 @@ def load_search_ready_ekos() -> list[dict]:
     """
 
     if not INPUT_FILE.exists():
-        raise FileNotFoundError(
-            f"Search-ready EKO file not found: {INPUT_FILE}"
-        )
+        raise FileNotFoundError(f"Search-ready EKO file not found: {INPUT_FILE}")
 
     with INPUT_FILE.open("r", encoding="utf-8") as file:
         records = json.load(file)
 
     if not isinstance(records, list):
-        raise ValueError(
-            "Search-ready EKO data must be a JSON array."
-        )
+        raise ValueError("Search-ready EKO data must be a JSON array.")
 
     if not records:
-        raise ValueError(
-            "Search-ready EKO dataset is empty."
-        )
+        raise ValueError("Search-ready EKO dataset is empty.")
 
     return records
 
@@ -59,6 +48,7 @@ def load_search_ready_ekos() -> list[dict]:
 # ---------------------------------------------------------
 # Generate embeddings
 # ---------------------------------------------------------
+
 
 def generate_embeddings(
     records: list[dict],
@@ -70,7 +60,7 @@ def generate_embeddings(
 
     print(f"Loading embedding model: {MODEL_NAME}")
 
-    model = SentenceTransformer(MODEL_NAME)
+    model = RemoteEmbeddingModel(MODEL_NAME)
 
     texts = []
 
@@ -79,8 +69,7 @@ def generate_embeddings(
 
         if not searchable_text:
             raise ValueError(
-                f"{record.get('ko_id', 'Unknown KO')} "
-                "has no searchable_text."
+                f"{record.get('ko_id', 'Unknown KO')} " "has no searchable_text."
             )
 
         texts.append(searchable_text)
@@ -101,6 +90,7 @@ def generate_embeddings(
 # Save embeddings
 # ---------------------------------------------------------
 
+
 def save_embeddings(
     records: list[dict],
     embeddings: np.ndarray,
@@ -117,9 +107,7 @@ def save_embeddings(
         exist_ok=True,
     )
 
-    ko_ids = np.array(
-        [record["ko_id"] for record in records]
-    )
+    ko_ids = np.array([record["ko_id"] for record in records])
 
     np.savez_compressed(
         OUTPUT_FILE,
@@ -131,6 +119,7 @@ def save_embeddings(
 # ---------------------------------------------------------
 # Main
 # ---------------------------------------------------------
+
 
 def main() -> None:
     print("SiteSeer 2B - Embedding Generation")

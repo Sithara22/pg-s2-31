@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from backend.embeddings.embedding_client import RemoteEmbeddingModel
 
 
 # ---------------------------------------------------------
@@ -84,7 +84,7 @@ def semantic_search(
     records: list[dict],
     ko_ids: np.ndarray,
     embeddings: np.ndarray,
-    model: SentenceTransformer,
+    model: RemoteEmbeddingModel,
     top_k: int = 3,
 ) -> list[dict]:
     """
@@ -199,7 +199,7 @@ def main() -> None:
 
     print(f"Loading model: {MODEL_NAME}")
 
-    model = SentenceTransformer(MODEL_NAME)
+    model = RemoteEmbeddingModel(MODEL_NAME)
 
     print()
     query = input("Enter a learner question: ")
