@@ -64,7 +64,7 @@ class RetrievedSource(BaseModel):
 class AnswerResponse(BaseModel):
     answer: str
     status: Literal[
-        "answered", "insufficient_evidence",
+        "answered", "insufficient_evidence", "conversational",
         "invalid_model_response", "citation_validation_failed",
     ]
     sources: list[str]
@@ -80,6 +80,11 @@ def health():
 @app.post("/ask", response_model=AnswerResponse)
 def ask(body: QuestionRequest, request: Request):
     """Run the existing RAG pipeline with its default top-three retrieval."""
+    from backend.llm.conversation import quick_intent, conversational_result
+
+    intent = quick_intent(body.question)
+    if intent:
+        return conversational_result(intent)
     rag = request.app.state.rag
     try:
         connection = rag.get_database_connection()

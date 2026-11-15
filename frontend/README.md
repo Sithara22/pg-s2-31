@@ -24,7 +24,7 @@ npm run dev
 
 Open http://127.0.0.1:5173. Enter a question or select an example, then click
 **Ask SiteSeer**. The first answer can take longer while Ollama loads the model.
-The page waits up to five minutes; timing out does not cancel server generation.
+The page waits up to seven minutes; timing out does not cancel server generation.
 
 The project uses React and Vite 6, compatible with the existing Node 20.13 setup.
 The API defaults to http://127.0.0.1:8000. To change it, create `frontend/.env`
@@ -47,3 +47,7 @@ but only the last three exchanges are sent; very long prior answers are limited
 to 6,000 characters. Follow-ups take an extra model call and may be slower.
 Failed requests preserve previous turns and restore the question for retry.
 New chat is disabled while an answer is being generated.
+
+Social replies (greetings, thanks and assistant help) have no EKO citations and
+are excluded from the construction history sent on later turns. General unrelated
+questions get a scope explanation. Routing may add a model call before retrieval.

@@ -9,6 +9,7 @@ const examples = [
 ];
 const headings = {
   answered: 'Your answer',
+  conversational: 'SiteSeer',
   insufficient_evidence: 'More knowledge is needed',
   invalid_model_response: 'An answer could not be verified',
   citation_validation_failed: 'An answer could not be verified',
@@ -28,14 +29,14 @@ function App() {
     setLoading(true);
     setError('');
     const submitted = question.trim();
-    const history = turns.filter(turn => turn.result).slice(-3).flatMap(turn => [
+    const history = turns.filter(turn => turn.result && turn.result.status !== 'conversational').slice(-3).flatMap(turn => [
       { role: 'user', content: turn.question },
       { role: 'assistant', content: turn.result.answer.slice(0, 6000) },
     ]);
     setTurns(previous => [...previous, { question: submitted, result: null }]);
     setQuestion('');
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 300000);
+    const timeout = setTimeout(() => controller.abort(), 420000);
     try {
       const response = await fetch(`${API}/ask`, {
         method: 'POST',
