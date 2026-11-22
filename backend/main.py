@@ -24,7 +24,7 @@ async def lifespan(app: FastAPI):
     from backend.llm import rag_pipeline
 
     app.state.rag = rag_pipeline
-    app.state.embedding_model = rag_pipeline.RemoteEmbeddingModel(
+    app.state.embedding_model = rag_pipeline.SentenceTransformer(
         rag_pipeline.MODEL_NAME
     )
     yield
@@ -136,7 +136,7 @@ def ask(body: QuestionRequest, request: Request):
                 topics, keywords = classify_question(body.question)
 
                 filters = body.model_dump(
-                    exclude={"question"},
+                    exclude={"question", "history"},
                     exclude_none=True,
                 )
 

@@ -78,7 +78,14 @@ def list_unanswered_questions(
 
     return {
         "items": [
-            {key: value for key, value in row.items() if key != "total"}
+            {
+                **{key: value for key, value in row.items() if key != "total"},
+                # Older records included conversation history as a filter.
+                "filters": {
+                    key: value for key, value in row["filters"].items()
+                    if key != "history"
+                },
+            }
             for row in rows
             if row["id"] is not None
         ],

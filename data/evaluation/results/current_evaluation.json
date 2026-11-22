@@ -1,0 +1,1341 @@
+{
+  "benchmark_type": "end_to_end_synthetic_retrieval_generation",
+  "model": "Qwen3-4B",
+  "embedding_model": "all-MiniLM-L6-v2",
+  "created_at_utc": "2026-11-15T13:39:10.267292+00:00",
+  "notes": "Retrieval metrics are based on synthetic expected EKO IDs. Citation checks validate references, not claim-level grounding. Answer statuses are reported by the RAG pipeline and are not independent verification of factual correctness. Insufficient-evidence cases may retrieve unrelated EKOs.",
+  "summary": {
+    "total_cases": 40,
+    "answerable_cases": 35,
+    "insufficient_cases": 5,
+    "hit_at_1": 10,
+    "hit_at_k": 10,
+    "top_k": 3,
+    "answerable_cases_with_citation": 17,
+    "answerable_cases_answered": 17,
+    "insufficient_cases_refused": 5,
+    "citation_validation_failures": 0,
+    "invalid_model_responses": 0,
+    "status_counts": {
+      "answered": 17,
+      "insufficient_evidence": 23
+    },
+    "cases_with_unsupported_citations": 0,
+    "mean_latency_seconds": 3.648
+  },
+  "results": [
+    {
+      "test_id": "RET-001",
+      "scenario": "answerable_candidate",
+      "question": "What should I check before concrete is poured for a slab?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-001",
+      "retrieved_ko_ids": [
+        "MOCK-KO-001",
+        "MOCK-KO-005",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.6682939131085693
+        },
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.5234618186951279
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.3128345497152214
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "Before concrete is poured for a slab, you should check the pre-pour slab inspection [MOCK-KO-001], under-slab drainage inspection [MOCK-KO-005], and wall frame inspection before concealment [MOCK-KO-003]. These inspections ensure that important construction work is checked before it becomes difficult or impossible to inspect.",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-001",
+        "MOCK-KO-005",
+        "MOCK-KO-003"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 12.803
+    },
+    {
+      "test_id": "RET-002",
+      "scenario": "answerable_candidate",
+      "question": "How do I stop a newly installed wall frame from moving?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-002",
+      "retrieved_ko_ids": [
+        "MOCK-KO-002",
+        "MOCK-KO-008",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.3731324748317919
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.34668859600628754
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.2671919424076237
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "To stop a newly installed wall frame from moving, temporary bracing should be installed as part of the framing sequence and kept in place while temporary stability is required [MOCK-KO-002].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-002"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.769
+    },
+    {
+      "test_id": "RET-003",
+      "scenario": "answerable_candidate",
+      "question": "What should I inspect on a wall frame before it gets covered?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-003",
+      "retrieved_ko_ids": [
+        "MOCK-KO-003",
+        "MOCK-KO-008",
+        "MOCK-KO-002"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.5880406534550637
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.3578181903795742
+        },
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.2923025140401725
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "You should inspect the wall frame for proper alignment and structural integrity before it gets covered. This includes checking that the frame is correctly positioned and stable, as outlined in [MOCK-KO-003].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-003"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.52
+    },
+    {
+      "test_id": "RET-004",
+      "scenario": "answerable_candidate",
+      "question": "What should I check when setting out roof framing?",
+      "filters": {
+        "stage": "Roof Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-004",
+      "retrieved_ko_ids": [
+        "MOCK-KO-004"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.611185106948593
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "When setting out roof framing, you should check the intended positions of roof framing elements before installation proceeds [MOCK-KO-004]. Relevant positions are established and checked as part of the roof framing sequence before the associated members are installed [MOCK-KO-004]. The set-out depends on the roof configuration and the information applicable to the construction [MOCK-KO-004].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-004",
+        "MOCK-KO-004",
+        "MOCK-KO-004"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.815
+    },
+    {
+      "test_id": "RET-005",
+      "scenario": "answerable_candidate",
+      "question": "What needs to be checked for drainage before the slab is poured?",
+      "filters": {
+        "stage": "Pre-Slab",
+        "trade": "Plumbing",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-005",
+      "retrieved_ko_ids": [
+        "MOCK-KO-005"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.6313056695974071
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "The relevant drainage work should be checked before it becomes concealed by subsequent slab construction [MOCK-KO-005].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-005"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 2.495
+    },
+    {
+      "test_id": "RET-006",
+      "scenario": "answerable_candidate",
+      "question": "What should I consider when preparing wall framing in wet areas?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-006",
+      "retrieved_ko_ids": [
+        "MOCK-KO-006"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.706278247015373
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "When preparing wall framing in wet areas, consider the construction and finishes associated with that area [MOCK-KO-006], check the framing arrangement against relevant design and construction requirements before later finishes are installed [MOCK-KO-006], and consider how later wet-area construction will interact with the framing rather than treating the frame in isolation [MOCK-KO-006].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-006",
+        "MOCK-KO-006"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.442
+    },
+    {
+      "test_id": "RET-007",
+      "scenario": "answerable_candidate",
+      "question": "Why does the order of construction work matter before something is concealed?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-007",
+      "retrieved_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-009",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.5913105933584905
+        },
+        {
+          "ko_id": "MOCK-KO-009",
+          "title": "Evidence before work is concealed",
+          "score": 0.5474991748480328
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.5177390575409266
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "The order of construction work matters before something is concealed because it ensures that required inspections and checks occur before later activities conceal or restrict access to earlier work [MOCK-KO-007]. Additionally, evidence of completed work must be captured at the appropriate stage before subsequent construction prevents normal observation of the work [MOCK-KO-009].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-009"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 5.04
+    },
+    {
+      "test_id": "RET-008",
+      "scenario": "answerable_candidate",
+      "question": "What should I consider when setting out a wall frame?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-008",
+      "retrieved_ko_ids": [
+        "MOCK-KO-008",
+        "MOCK-KO-002",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.6044153322183293
+        },
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.436662532489001
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.4048103973834529
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "When setting out a wall frame, consider the intended position of the wall framing before completion [MOCK-KO-008]. Establish wall positions from relevant project information and check them before framing proceeds [MOCK-KO-008]. Set-out decisions depend on the building layout and information applicable to the particular wall [MOCK-KO-008]. An experienced practitioner checks the relationship between the wall position and surrounding construction before errors become difficult to correct [MOCK-KO-008]. Wall frame set-out depends on earlier building layout information and informs subsequent framing activities [MOCK-KO-008].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-008",
+        "MOCK-KO-008",
+        "MOCK-KO-008",
+        "MOCK-KO-008",
+        "MOCK-KO-008"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 7.575
+    },
+    {
+      "test_id": "RET-009",
+      "scenario": "answerable_candidate",
+      "question": "Why should evidence be captured before construction work is covered?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-009",
+      "retrieved_ko_ids": [
+        "MOCK-KO-009",
+        "MOCK-KO-007",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-009",
+          "title": "Evidence before work is concealed",
+          "score": 0.7072486143184652
+        },
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.5500966161777435
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.5115589194560922
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "Evidence should be captured before construction work is covered to provide a record that relevant construction was checked before it became concealed [MOCK-KO-009]. Additionally, work is planned so that required inspections and checks occur before later activities conceal or restrict access to earlier work [MOCK-KO-007].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-009",
+        "MOCK-KO-007"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 5.216
+    },
+    {
+      "test_id": "RET-010",
+      "scenario": "answerable_candidate",
+      "question": "How can one construction decision depend on another?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-010",
+      "retrieved_ko_ids": [
+        "MOCK-KO-010",
+        "MOCK-KO-007",
+        "MOCK-KO-006"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-010",
+          "title": "Construction decision dependencies",
+          "score": 0.6515311598777956
+        },
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.44225513590904864
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.4055070039327804
+        }
+      ],
+      "hit_at_1": true,
+      "hit_at_k": true,
+      "answer": "A construction decision can depend on another because dependencies are identified before making a decision so that relevant preceding conditions and downstream effects can be considered [MOCK-KO-010]. Additionally, construction sequencing determines the order in which related activities are carried out, ensuring that required inspections and checks occur before later activities conceal or restrict access to earlier work [MOCK-KO-007].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-010",
+        "MOCK-KO-007"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 5.744
+    },
+    {
+      "test_id": "RET-011",
+      "scenario": "answerable_candidate",
+      "question": "How should stud spacing and wall framing layout be checked?",
+      "filters": {
+        "stage": "Wall Framing",
+        "trade": "Carpentry",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-016",
+      "retrieved_ko_ids": [
+        "MOCK-KO-008",
+        "MOCK-KO-003",
+        "MOCK-KO-002"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.5025450877710924
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.40504748044700123
+        },
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.37580626443513077
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "Stud spacing and wall framing layout should be checked based on the building layout and information applicable to the particular wall [MOCK-KO-008]. An experienced practitioner checks the relationship between the wall position and surrounding construction before errors become difficult to correct [MOCK-KO-008].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-008",
+        "MOCK-KO-008"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.712
+    },
+    {
+      "test_id": "RET-012",
+      "scenario": "answerable_candidate",
+      "question": "What should be checked to maintain load path continuity at wall top plates?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-017",
+      "retrieved_ko_ids": [
+        "MOCK-KO-002",
+        "MOCK-KO-008",
+        "MOCK-KO-006"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.3033046099517903
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.2674811700737185
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.24871963988537205
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address the question about maintaining load path continuity at wall top plates. The provided EKO evidence focuses on temporary bracing, wall frame set-out, and wet-area wall framing considerations, but none specifically mention load path continuity at wall top plates.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.628
+    },
+    {
+      "test_id": "RET-013",
+      "scenario": "answerable_candidate",
+      "question": "What needs to be ready before under-slab drainage testing?",
+      "filters": {
+        "stage": "Pre-Slab",
+        "trade": "Plumbing",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-018",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.494
+    },
+    {
+      "test_id": "RET-014",
+      "scenario": "answerable_candidate",
+      "question": "How should sanitary drain routes be coordinated before slab work?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-019",
+      "retrieved_ko_ids": [
+        "MOCK-KO-005",
+        "MOCK-KO-001",
+        "MOCK-KO-007"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.4922524113053435
+        },
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.37082285558497896
+        },
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.18056811640884862
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "Sanitary drain routes should be coordinated before slab work by ensuring that relevant drainage work is checked before it becomes concealed by the slab construction. This involves inspecting the drainage work before the concrete pour, addressing any issues identified, and planning the construction sequence so that required inspections occur before later activities conceal the work [MOCK-KO-005], [MOCK-KO-001], [MOCK-KO-007].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-005",
+        "MOCK-KO-001",
+        "MOCK-KO-007"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 5.74
+    },
+    {
+      "test_id": "RET-015",
+      "scenario": "answerable_candidate",
+      "question": "What should workers understand during site induction before starting work?",
+      "filters": {
+        "stage": "Site Management",
+        "trade": "General Building",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-020",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.921
+    },
+    {
+      "test_id": "RET-016",
+      "scenario": "answerable_candidate",
+      "question": "How should safety-critical concerns be escalated on a construction site?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-021",
+      "retrieved_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-003",
+        "MOCK-KO-001"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.3479308317755446
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.3337276676703067
+        },
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.31535768991057156
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "Safety-critical concerns should be escalated by ensuring that inspections and checks occur before later activities conceal or restrict access to earlier work, as outlined in the construction sequencing and concealment process [MOCK-KO-007]. This includes inspecting critical elements like wall frames [MOCK-KO-003] and pre-pour slabs [MOCK-KO-001] before they become inaccessible due to subsequent construction activities.",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-003",
+        "MOCK-KO-001"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 5.686
+    },
+    {
+      "test_id": "RET-017",
+      "scenario": "answerable_candidate",
+      "question": "How should pedestrian movement be managed around mobile plant?",
+      "filters": {
+        "stage": "Site Management",
+        "trade": "General Building",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-022",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.572
+    },
+    {
+      "test_id": "RET-018",
+      "scenario": "answerable_candidate",
+      "question": "What should happen if unexpected hazards are discovered during excavation?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-023",
+      "retrieved_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-005",
+        "MOCK-KO-009"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.441525664420485
+        },
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.39773122153357976
+        },
+        {
+          "ko_id": "MOCK-KO-009",
+          "title": "Evidence before work is concealed",
+          "score": 0.38323330433071345
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "If unexpected hazards are discovered during excavation, the relevant work should be checked before it becomes concealed by subsequent construction. This ensures that inspections and checks occur at the appropriate stage, as highlighted in [MOCK-KO-005] and [MOCK-KO-009].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-005",
+        "MOCK-KO-009"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.503
+    },
+    {
+      "test_id": "RET-019",
+      "scenario": "answerable_candidate",
+      "question": "How should roof catchment areas and roof drainage be coordinated?",
+      "filters": {
+        "stage": "Roofing",
+        "trade": "Roofing",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-024",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.485
+    },
+    {
+      "test_id": "RET-020",
+      "scenario": "answerable_candidate",
+      "question": "What should be considered when providing overflow for roof drainage?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-025",
+      "retrieved_ko_ids": [
+        "MOCK-KO-005",
+        "MOCK-KO-004",
+        "MOCK-KO-006"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.3602609586249228
+        },
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.2243504107772878
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.22152018207552215
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address the considerations for providing overflow for roof drainage. The evidence provided relates to under-slab drainage inspection, roof framing set-out, and wet-area wall framing consideration, but none of these specifically mention roof drainage overflow considerations.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.255
+    },
+    {
+      "test_id": "RET-021",
+      "scenario": "answerable_candidate",
+      "question": "How do I check the intended fall and drainage direction of gutters?",
+      "filters": {
+        "stage": "Roofing",
+        "trade": "Roofing",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-026",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.476
+    },
+    {
+      "test_id": "RET-022",
+      "scenario": "answerable_candidate",
+      "question": "How can roof sheets be protected from damage during nearby work?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-027",
+      "retrieved_ko_ids": [
+        "MOCK-KO-004",
+        "MOCK-KO-006",
+        "MOCK-KO-005"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.25046631688281806
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.19226702359521664
+        },
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.1801336830615452
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address how roof sheets can be protected from damage during nearby work. The provided EKOs focus on roof framing set-out, wet-area wall framing, and under-slab drainage inspection, but none specifically mention protecting roof sheets during nearby work.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.451
+    },
+    {
+      "test_id": "RET-023",
+      "scenario": "answerable_candidate",
+      "question": "What needs to be complete before internal lining work starts?",
+      "filters": {
+        "stage": "Internal Linings",
+        "trade": "Plastering",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-028",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.705
+    },
+    {
+      "test_id": "RET-024",
+      "scenario": "answerable_candidate",
+      "question": "How should ceiling lining be sequenced with overhead services?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-029",
+      "retrieved_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-006",
+        "MOCK-KO-004"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.3423795136378456
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.300629538447749
+        },
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.27687248587610114
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "Ceiling lining should be sequenced after overhead services have been installed and checked, ensuring that inspections and checks occur before later activities conceal or restrict access to earlier work [MOCK-KO-007].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-007"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 3.972
+    },
+    {
+      "test_id": "RET-025",
+      "scenario": "answerable_candidate",
+      "question": "What should be checked before finishing a wet-area substrate?",
+      "filters": {
+        "stage": "Internal Linings",
+        "trade": "Plastering",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-030",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.475
+    },
+    {
+      "test_id": "RET-026",
+      "scenario": "answerable_candidate",
+      "question": "How should dust exposure be managed when multiple trades are working?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-031",
+      "retrieved_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-009",
+        "MOCK-KO-003"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.21278915412167554
+        },
+        {
+          "ko_id": "MOCK-KO-009",
+          "title": "Evidence before work is concealed",
+          "score": 0.18637056824897846
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.17253325312933776
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "Dust exposure should be managed by ensuring that work is planned so that required inspections and checks occur before later activities conceal or restrict access to earlier work [MOCK-KO-007]. Additionally, evidence of completed work should be captured at the appropriate stage before subsequent construction prevents normal observation of the work [MOCK-KO-009].",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-007",
+        "MOCK-KO-009"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.934
+    },
+    {
+      "test_id": "RET-027",
+      "scenario": "answerable_candidate",
+      "question": "What should be coordinated when planning electrical component locations?",
+      "filters": {
+        "stage": "Electrical Rough-In",
+        "trade": "Electrical",
+        "jurisdiction": "SA",
+        "learner_level": "Foundation"
+      },
+      "expected_ko_id": "MOCK-KO-032",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.484
+    },
+    {
+      "test_id": "RET-028",
+      "scenario": "answerable_candidate",
+      "question": "What extra considerations apply to electrical positions in wet areas?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-033",
+      "retrieved_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-005",
+        "MOCK-KO-001"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.4110566728677414
+        },
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.26433306419859215
+        },
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.19778308960905222
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The supplied evidence does not directly address the question about extra considerations for electrical positions in wet areas. The evidence focuses on wall framing, under-slab drainage, and pre-pour slab inspection, but not on electrical considerations in wet areas.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.171
+    },
+    {
+      "test_id": "RET-029",
+      "scenario": "answerable_candidate",
+      "question": "How should electrical cable routes be coordinated with framing penetrations?",
+      "filters": {
+        "stage": "Electrical Rough-In",
+        "trade": "Electrical",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-034",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.484
+    },
+    {
+      "test_id": "RET-030",
+      "scenario": "answerable_candidate",
+      "question": "What electrical rough-in evidence should be recorded before lining?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-035",
+      "retrieved_ko_ids": [
+        "MOCK-KO-009",
+        "MOCK-KO-003",
+        "MOCK-KO-001"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-009",
+          "title": "Evidence before work is concealed",
+          "score": 0.4230081083498384
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.381870650164557
+        },
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.3307628732465462
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The electrical rough-in evidence that should be recorded before lining is captured at the appropriate stage before subsequent construction prevents normal observation of the work [MOCK-KO-009]. This ensures that relevant construction is checked before it becomes concealed.",
+      "answer_status": "answered",
+      "cited_ko_ids": [
+        "MOCK-KO-009"
+      ],
+      "unsupported_citations": [],
+      "latency_seconds": 4.083
+    },
+    {
+      "test_id": "RET-031",
+      "scenario": "answerable_candidate",
+      "question": "What needs to be verified before electrical systems are energised?",
+      "filters": {
+        "stage": "Electrical Fit-Off",
+        "trade": "Electrical",
+        "jurisdiction": "SA",
+        "learner_level": "Advanced"
+      },
+      "expected_ko_id": "MOCK-KO-036",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.447
+    },
+    {
+      "test_id": "RET-032",
+      "scenario": "answerable_candidate",
+      "question": "What design inputs should be considered for residential HVAC capacity selection?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-037",
+      "retrieved_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-008",
+        "MOCK-KO-004"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.16184495260133247
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.15958948370125114
+        },
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.15041561873006815
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address the design inputs for residential HVAC capacity selection. The provided EKOs focus on wet-area wall framing, wall frame set-out, and roof framing set-out, which are related to construction and framing activities but not specifically to HVAC capacity selection.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.401
+    },
+    {
+      "test_id": "RET-033",
+      "scenario": "answerable_candidate",
+      "question": "What needs to be coordinated before HVAC first-fix work is concealed?",
+      "filters": {
+        "stage": "HVAC",
+        "trade": "Mechanical Services",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-038",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.578
+    },
+    {
+      "test_id": "RET-034",
+      "scenario": "answerable_candidate",
+      "question": "How should supply and return air locations be coordinated?",
+      "filters": {},
+      "expected_ko_id": "MOCK-KO-039",
+      "retrieved_ko_ids": [
+        "MOCK-KO-004",
+        "MOCK-KO-007",
+        "MOCK-KO-006"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.15911461547948103
+        },
+        {
+          "ko_id": "MOCK-KO-007",
+          "title": "Construction sequencing and concealment",
+          "score": 0.1558286230257696
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.11980529098542303
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address how supply and return air locations should be coordinated. The provided EKO evidence focuses on roof framing set-out, construction sequencing, and wet-area wall framing, but not on air system coordination.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.151
+    },
+    {
+      "test_id": "RET-035",
+      "scenario": "answerable_candidate",
+      "question": "What should be considered when planning HVAC duct routes and future access?",
+      "filters": {
+        "stage": "HVAC",
+        "trade": "Mechanical Services",
+        "jurisdiction": "SA",
+        "learner_level": "Intermediate"
+      },
+      "expected_ko_id": "MOCK-KO-040",
+      "retrieved_ko_ids": [],
+      "retrieval": [],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available EKO evidence is insufficient to answer this question.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 0.628
+    },
+    {
+      "test_id": "RET-036",
+      "scenario": "insufficient_zero_evidence",
+      "question": "How should solar panels be installed?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-004",
+        "MOCK-KO-006",
+        "MOCK-KO-008"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.26249976083643456
+        },
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.19686022717594065
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.19575305086301542
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address how solar panels should be installed. The provided EKOs cover topics related to roof framing, wet-area wall framing, and wall frame set-out, but none specifically mention solar panel installation procedures.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.554
+    },
+    {
+      "test_id": "RET-037",
+      "scenario": "insufficient_zero_evidence",
+      "question": "What exact air-conditioner capacity in kilowatts is required for my specific house without any building measurements?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-004",
+        "MOCK-KO-008"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.1110158686666256
+        },
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.10925359372773691
+        },
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.10886165499687506
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not provide information about the exact air-conditioner capacity in kilowatts required for a house. The evidence focuses on construction topics such as wet-area wall framing, roof framing set-out, and wall frame set-out, but does not address air-conditioner capacity calculations or requirements.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.773
+    },
+    {
+      "test_id": "RET-038",
+      "scenario": "insufficient_zero_evidence",
+      "question": "What is the best way to improve the energy efficiency of a house?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-008",
+        "MOCK-KO-004",
+        "MOCK-KO-002"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-008",
+          "title": "Wall frame set-out",
+          "score": 0.05945395360220318
+        },
+        {
+          "ko_id": "MOCK-KO-004",
+          "title": "Roof framing set-out",
+          "score": 0.059346948570740965
+        },
+        {
+          "ko_id": "MOCK-KO-002",
+          "title": "Temporary wall frame bracing",
+          "score": 0.0411992532790153
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The provided evidence does not address the question about improving the energy efficiency of a house. The evidence focuses on construction set-out and bracing procedures, which are related to structural framing but not directly to energy efficiency.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.13
+    },
+    {
+      "test_id": "RET-039",
+      "scenario": "insufficient_zero_evidence",
+      "question": "Which exterior paint should I use?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-003",
+        "MOCK-KO-001"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.191637168570167
+        },
+        {
+          "ko_id": "MOCK-KO-003",
+          "title": "Wall frame inspection before concealment",
+          "score": 0.1366733867921489
+        },
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.061122345012083024
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address the choice of exterior paint. The provided knowledge focuses on construction processes like framing, inspections, and concrete pouring, but does not mention paint selection criteria or recommendations.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.061
+    },
+    {
+      "test_id": "RET-040",
+      "scenario": "insufficient_zero_evidence",
+      "question": "How should a swimming pool filtration system be installed?",
+      "filters": {},
+      "expected_ko_id": null,
+      "retrieved_ko_ids": [
+        "MOCK-KO-006",
+        "MOCK-KO-001",
+        "MOCK-KO-005"
+      ],
+      "retrieval": [
+        {
+          "ko_id": "MOCK-KO-006",
+          "title": "Wet-area wall framing consideration",
+          "score": 0.18582526191924753
+        },
+        {
+          "ko_id": "MOCK-KO-001",
+          "title": "Pre-pour slab inspection",
+          "score": 0.06956791378834015
+        },
+        {
+          "ko_id": "MOCK-KO-005",
+          "title": "Under-slab drainage inspection",
+          "score": 0.06668376872733439
+        }
+      ],
+      "hit_at_1": false,
+      "hit_at_k": false,
+      "answer": "The available evidence does not directly address how to install a swimming pool filtration system. The provided EKO evidence focuses on wet-area wall framing, pre-pour slab inspection, and under-slab drainage inspection, which are unrelated to the installation of a filtration system.",
+      "answer_status": "insufficient_evidence",
+      "cited_ko_ids": [],
+      "unsupported_citations": [],
+      "latency_seconds": 4.559
+    }
+  ]
+}

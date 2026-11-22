@@ -69,7 +69,9 @@ Run commands from the **repository root**.
    ollama list
    ```
 
-The RAG pipeline uses the model name defined by `OLLAMA_MODEL` in `backend/llm/rag_pipeline.py`. Installing other Ollama models does **not** automatically change the model used by the pipeline.
+The API and RAG CLI use local MiniLM embeddings and local Ollama generation; no hosted inference API key is required. Install dependencies with `python -m pip install -r backend/requirements.txt`. The first MiniLM load downloads model weights; subsequent runs use the local cache.
+
+Set `OLLAMA_MODEL` in `.env` to select an installed model (default: `qwen3:4b-q4_K_M`). Installing other Ollama models does **not** automatically change the model used by the pipeline. Start the API with `python -m uvicorn backend.main:app --reload`.
 
 **Local resources:** The selected model was run on an Apple Silicon development laptop. Runtime and memory requirements may differ across machines; the repository does not establish a universal minimum hardware specification. Local inference avoids per-request hosted-model API charges but still uses local compute resources.
 

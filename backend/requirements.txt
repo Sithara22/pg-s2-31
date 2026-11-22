@@ -1,4 +1,5 @@
 huggingface-hub>=0.31,<2
+sentence-transformers
 groq
 numpy
 psycopg[binary]

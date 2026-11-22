@@ -1,20 +1,26 @@
-"""SiteSeer 2B: API-based retrieval-augmented question answering."""
+"""SiteSeer 2B: local retrieval-augmented question answering with Ollama."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 
+from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 
 from backend.llm.run_rag_benchmark import query_ollama
 from backend.llm.conversation import route_conversation
 from backend.semantic_search.search_pgvector import (
     MODEL_NAME,
+    ENV_FILE,
     get_database_connection,
     semantic_search_pgvector,
 )
+
+load_dotenv(ENV_FILE)
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen3:4b-q4_K_M")
 
 INSUFFICIENT_EVIDENCE = (
     "The available EKO evidence is insufficient " "to answer this question."
@@ -157,7 +163,7 @@ def resolve_question(question: str, history: list[dict]) -> str:
 
 def answer_question(
     question: str,
-    embedding_model: RemoteEmbeddingModel,
+    embedding_model: SentenceTransformer,
     connection,
     top_k: int = 3,
     stage: str | None = None,
@@ -217,11 +223,13 @@ def answer_question(
         "Answer only when the supplied evidence supports the answer."
     )
 
-    output = query_llm(
+    output = query_ollama(
+        model=OLLAMA_MODEL,
         model_input={
             "system": SYSTEM_PROMPT,
             "user": user_prompt,
         },
+        timeout=120,
     )
 
     try:
@@ -301,9 +309,9 @@ def main() -> None:
     print("SiteSeer 2B | Local RAG Pipeline")
     print("--------------------------------")
     print(f"Embedding model: {MODEL_NAME}")
-    print(f"Generation model: {LLM_MODEL}")
+    print(f"Generation model: {OLLAMA_MODEL}")
 
-    embedding_model = RemoteEmbeddingModel(MODEL_NAME)
+    embedding_model = SentenceTransformer(MODEL_NAME)
     connection = get_database_connection()
 
     try:

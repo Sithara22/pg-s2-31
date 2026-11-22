@@ -11,9 +11,8 @@ from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
-from backend.embeddings.embedding_client import RemoteEmbeddingModel
-from backend.llm.rag_pipeline import answer_question
-from backend.llm.llm_client import LLM_MODEL
+from sentence_transformers import SentenceTransformer
+from backend.llm.rag_pipeline import answer_question, OLLAMA_MODEL as LLM_MODEL
 from backend.semantic_search.search_pgvector import (
     MODEL_NAME,
     get_database_connection,
@@ -105,7 +104,7 @@ def load_cases(path: Path) -> list[dict]:
 def evaluate(cases: list[dict], top_k: int) -> dict:
     """Run retrieval and generation for each benchmark question."""
 
-    model = RemoteEmbeddingModel(MODEL_NAME)
+    model = SentenceTransformer(MODEL_NAME)
     results = []
 
     connection = get_database_connection()
