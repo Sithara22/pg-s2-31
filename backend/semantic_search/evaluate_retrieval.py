@@ -1,7 +1,8 @@
+
 import json
 from pathlib import Path
 
-from sentence_transformers import SentenceTransformer
+from backend.embeddings.embedding_client import RemoteEmbeddingModel
 
 from search_pgvector import (
     get_database_connection,
@@ -172,7 +173,7 @@ def main() -> None:
 
     print(f"Loading model: {MODEL_NAME}")
 
-    model = SentenceTransformer(MODEL_NAME)
+    model = RemoteEmbeddingModel(MODEL_NAME)
 
     total_answerable = 0
     hit_at_1 = 0

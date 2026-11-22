@@ -1,0 +1,404 @@
+.uq-page {
+  min-height: 100vh;
+  background: #f5f7f8;
+  color: #183139;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+.uq-page,
+.uq-page * {
+  box-sizing: border-box;
+}
+
+.uq-page button,
+.uq-page a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.uq-page button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.uq-page button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uq-page :focus-visible {
+  outline: 3px solid #089d92;
+  outline-offset: 4px;
+}
+
+.uq-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px clamp(20px, 5vw, 72px);
+  background: white;
+  border-bottom: 1px solid #dfe7e9;
+}
+
+.uq-brand {
+  color: #123c43;
+  font-size: 25px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.uq-home {
+  color: #42656c;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.uq-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 56px 24px 80px;
+}
+
+.uq-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.uq-eyebrow {
+  margin: 0 0 12px;
+  color: #087e74;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.uq-heading h1 {
+  margin: 0;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+}
+
+.uq-description {
+  max-width: 640px;
+  margin: 16px 0 0;
+  color: #597078;
+  line-height: 1.7;
+}
+
+.uq-button {
+  padding: 10px 16px;
+  border: 1px solid #ccdadd;
+  border-radius: 9px;
+  background: white;
+  color: #234b53;
+  white-space: nowrap;
+}
+
+.uq-button:hover:not(:disabled) {
+  background: #e9f5f2;
+  border-color: #86bdb4;
+}
+
+.uq-filters {
+  margin-bottom: 32px;
+  padding: 24px;
+  border: 1px solid #dfe7e9;
+  border-radius: 16px;
+  background: white;
+}
+
+.uq-filters h2,
+.uq-results-heading h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.uq-topic-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.uq-topic {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 14px;
+  border: 1px solid #d8e4e5;
+  border-radius: 999px;
+  background: white;
+  color: #426168;
+  text-transform: capitalize;
+}
+
+.uq-topic span {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #edf3f3;
+  font-size: 12px;
+}
+
+.uq-topic.is-active {
+  border-color: #116b60;
+  background: #116b60;
+  color: white;
+}
+
+.uq-topic.is-active span {
+  background: #ffffff26;
+}
+
+.uq-results-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.uq-results-heading h2 {
+  text-transform: capitalize;
+}
+
+.uq-results-heading > span {
+  color: #647c82;
+  font-size: 14px;
+}
+
+.uq-card {
+  margin-bottom: 16px;
+  padding: 24px;
+  border: 1px solid #dfe7e9;
+  border-radius: 16px;
+  background: white;
+}
+
+.uq-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  color: #6c8085;
+  font-size: 12px;
+}
+
+.uq-card h3 {
+  margin: 16px 0;
+  font-size: 19px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.uq-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.uq-tags button {
+  padding: 5px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: #e8f4ef;
+  color: #17694f;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.uq-reason {
+  margin: 16px 0 8px;
+  color: #8c5c19;
+  font-size: 13px;
+}
+
+.uq-keywords {
+  margin: 0;
+  color: #647c82;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.uq-metadata {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 24px;
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid #edf1f2;
+  font-size: 12px;
+}
+
+.uq-metadata dt {
+  color: #6c8085;
+  text-transform: capitalize;
+}
+
+.uq-metadata dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+.uq-message {
+  padding: 32px 24px;
+  border: 1px dashed #ccdadd;
+  border-radius: 14px;
+  background: white;
+  color: #597078;
+  text-align: center;
+}
+
+.uq-error {
+  border-color: #e5b7b7;
+  background: #fff7f7;
+  color: #9b3838;
+}
+
+.uq-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.uq-pagination span {
+  color: #647c82;
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  .uq-main {
+    padding: 32px 16px 48px;
+  }
+
+  .uq-heading {
+    flex-direction: column;
+  }
+
+  .uq-header {
+    padding: 20px 16px;
+  }
+
+  .uq-home {
+    font-size: 12px;
+  }
+
+  .uq-card,
+  .uq-filters {
+    padding: 18px;
+  }
+}
+.uq-page {
+  background: #f6f6f6;
+  color: #191919;
+}
+
+.uq-page :focus-visible {
+  outline-color: #c9202e;
+}
+
+.uq-header {
+  background: #ffffff;
+  border-bottom-color: #e2e2e2;
+}
+
+.uq-brand {
+  color: #191919;
+}
+
+.uq-home,
+.uq-description,
+.uq-results-heading > span,
+.uq-keywords,
+.uq-pagination span {
+  color: #626262;
+}
+
+.uq-eyebrow {
+  color: #b51d29;
+}
+
+.uq-button {
+  border-color: #d7d7d7;
+  background: #ffffff;
+  color: #414141;
+}
+
+.uq-button:hover:not(:disabled) {
+  background: #fff0f1;
+  border-color: #c9202e;
+}
+
+.uq-filters,
+.uq-card {
+  border-color: #e0e0e0;
+  background: #ffffff;
+}
+
+.uq-topic {
+  border-color: #dedede;
+  background: #ffffff;
+  color: #414141;
+}
+
+.uq-topic:hover:not(.is-active) {
+  background: #fff0f1;
+  border-color: #eabfc4;
+}
+
+.uq-topic span {
+  background: #fce9eb;
+  color: #b51d29;
+}
+
+.uq-topic.is-active {
+  border-color: #c9202e;
+  background: #c9202e;
+  color: #ffffff;
+}
+
+.uq-topic.is-active span {
+  background: #ffffff26;
+  color: #ffffff;
+}
+
+.uq-card-meta,
+.uq-metadata dt {
+  color: #707070;
+}
+
+.uq-tags button {
+  background: #fce9eb;
+  color: #b51d29;
+}
+
+.uq-tags button:hover {
+  background: #f7d7dc;
+}
+
+.uq-reason {
+  color: #626262;
+}
+
+.uq-metadata {
+  border-top-color: #e5e5e5;
+}
+
+.uq-message {
+  border-color: #dedede;
+  background: #ffffff;
+  color: #626262;
+}
+
+.uq-error {
+  border-color: #eabfc4;
+  background: #fff3f4;
+  color: #9c1b27;
+}

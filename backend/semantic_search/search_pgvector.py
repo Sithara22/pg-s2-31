@@ -4,8 +4,7 @@ from pathlib import Path
 import psycopg
 from dotenv import load_dotenv
 from pgvector.psycopg import register_vector
-from sentence_transformers import SentenceTransformer
-
+from backend.embeddings.embedding_client import RemoteEmbeddingModel
 
 # ---------------------------------------------------------
 # Configuration
@@ -22,6 +21,7 @@ MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 # Database connection
 # ---------------------------------------------------------
 
+
 def get_database_connection():
     """
     Connect to the local SiteSeer 2B PostgreSQL database.
@@ -35,15 +35,14 @@ def get_database_connection():
     db_port = os.getenv("DB_PORT", "5432")
 
     if not db_name or not db_user:
-        raise ValueError(
-            "DB_NAME and DB_USER must be configured in .env"
-        )
+        raise ValueError("DB_NAME and DB_USER must be configured in .env")
 
     connection = psycopg.connect(
         dbname=db_name,
         user=db_user,
         host=db_host,
         port=db_port,
+        password=os.getenv("DB_PASSWORD"),
     )
 
     register_vector(connection)
@@ -55,9 +54,10 @@ def get_database_connection():
 # Semantic search with metadata filtering
 # ---------------------------------------------------------
 
+
 def semantic_search_pgvector(
     query: str,
-    model: SentenceTransformer,
+    model: RemoteEmbeddingModel,
     connection,
     top_k: int = 3,
     stage: str | None = None,
@@ -116,9 +116,7 @@ def semantic_search_pgvector(
     where_clause = ""
 
     if conditions:
-        where_clause = (
-            "WHERE " + " AND ".join(conditions)
-        )
+        where_clause = "WHERE " + " AND ".join(conditions)
 
     # -----------------------------------------------------
     # Vector search
@@ -176,6 +174,7 @@ def semantic_search_pgvector(
 # Display results
 # ---------------------------------------------------------
 
+
 def display_results(
     query: str,
     results: list[dict],
@@ -191,11 +190,7 @@ def display_results(
     print("Metadata Filters")
     print("----------------")
 
-    active_filters = {
-        key: value
-        for key, value in filters.items()
-        if value
-    }
+    active_filters = {key: value for key, value in filters.items() if value}
 
     if active_filters:
         for key, value in active_filters.items():
@@ -208,10 +203,7 @@ def display_results(
     print("---------------------------")
 
     if not results:
-        print(
-            "No Knowledge Objects matched "
-            "the selected metadata filters."
-        )
+        print("No Knowledge Objects matched " "the selected metadata filters.")
         return
 
     for rank, result in enumerate(results, start=1):
@@ -235,6 +227,7 @@ def display_results(
 # Optional input helper
 # ---------------------------------------------------------
 
+
 def optional_input(prompt: str) -> str | None:
     """
     Blank input means that the metadata filter is not used.
@@ -249,20 +242,16 @@ def optional_input(prompt: str) -> str | None:
 # Main
 # ---------------------------------------------------------
 
+
 def main() -> None:
 
-    print(
-        "SiteSeer 2B - Semantic Search "
-        "with Metadata Filtering"
-    )
+    print("SiteSeer 2B - Semantic Search " "with Metadata Filtering")
 
-    print(
-        "-----------------------------------------------"
-    )
+    print("-----------------------------------------------")
 
     print(f"Loading embedding model: {MODEL_NAME}")
 
-    model = SentenceTransformer(MODEL_NAME)
+    model = RemoteEmbeddingModel(MODEL_NAME)
 
     connection = get_database_connection()
 

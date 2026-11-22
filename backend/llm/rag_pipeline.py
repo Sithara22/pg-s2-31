@@ -1,33 +1,33 @@
-
-"""SiteSeer 2B: local retrieval-augmented question answering."""
+"""SiteSeer 2B: local retrieval-augmented question answering with Ollama."""
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 
+from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 
 from backend.llm.run_rag_benchmark import query_ollama
 from backend.llm.conversation import route_conversation
 from backend.semantic_search.search_pgvector import (
     MODEL_NAME,
+    ENV_FILE,
     get_database_connection,
     semantic_search_pgvector,
 )
 
-
-OLLAMA_MODEL = "qwen3:4b-q4_K_M"
+load_dotenv(ENV_FILE)
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "qwen3:4b-q4_K_M")
 
 INSUFFICIENT_EVIDENCE = (
-    "The available EKO evidence is insufficient "
-    "to answer this question."
+    "The available EKO evidence is insufficient " "to answer this question."
 )
 
 SAFE_FALLBACK = (
-    "A verified answer could not be produced from "
-    "the available EKO evidence."
+    "A verified answer could not be produced from " "the available EKO evidence."
 )
 
 SYSTEM_PROMPT = """
@@ -94,15 +94,13 @@ def validate_citations(
     unsupported = all_ids - retrieved_ids
     if unsupported:
         raise ValueError(
-            "Answer references EKOs not retrieved: "
-            + ", ".join(sorted(unsupported))
+            "Answer references EKOs not retrieved: " + ", ".join(sorted(unsupported))
         )
 
     malformed = all_ids - cited_ids
     if malformed:
         raise ValueError(
-            "Answer contains malformed EKO citations: "
-            + ", ".join(sorted(malformed))
+            "Answer contains malformed EKO citations: " + ", ".join(sorted(malformed))
         )
 
     if not cited_ids:
@@ -121,9 +119,7 @@ def parse_model_response(raw_answer: str) -> dict:
         raise ValueError("Model response must be a JSON object.")
 
     if set(response) != {"status", "answer"}:
-        raise ValueError(
-            "Model response must contain only status and answer."
-        )
+        raise ValueError("Model response must contain only status and answer.")
 
     status = response["status"]
     answer = response["answer"]
@@ -277,17 +273,11 @@ def answer_question(
             "status": "citation_validation_failed",
         }
 
-    cited_ids = set(
-        re.findall(r"\[(MOCK-KO-\d+)\]", answer)
-    )
+    cited_ids = set(re.findall(r"\[(MOCK-KO-\d+)\]", answer))
 
     return {
         "answer": answer,
-        "sources": [
-            item["ko_id"]
-            for item in results
-            if item["ko_id"] in cited_ids
-        ],
+        "sources": [item["ko_id"] for item in results if item["ko_id"] in cited_ids],
         "retrieval": retrieval,
         "status": "answered",
     }

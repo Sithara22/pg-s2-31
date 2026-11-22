@@ -12,8 +12,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from sentence_transformers import SentenceTransformer
-
-from backend.llm.rag_pipeline import OLLAMA_MODEL, answer_question
+from backend.llm.rag_pipeline import answer_question, OLLAMA_MODEL as LLM_MODEL
 from backend.semantic_search.search_pgvector import (
     MODEL_NAME,
     get_database_connection,
@@ -253,8 +252,8 @@ def evaluate(cases: list[dict], top_k: int) -> dict:
         "benchmark_type": (
             "end_to_end_synthetic_retrieval_generation"
         ),
-        "model": OLLAMA_MODEL,
-        "embedding_model": MODEL_NAME,
+        "model": "Qwen3-4B",
+        "embedding_model": "all-MiniLM-L6-v2",
         "created_at_utc": datetime.now(
             timezone.utc
         ).isoformat(),
