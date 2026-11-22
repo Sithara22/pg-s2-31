@@ -20,17 +20,58 @@ This guide describes the checked-in implementation as reviewed on **22 November 
 
 ## Architecture and repository map
 
-```text
-Raw synthetic EKOs → validation and eligibility filtering → search-ready EKOs
-    → corpus embedding generation → PostgreSQL / pgvector search index
+### Architecture
 
-React → FastAPI /ask → conversational routing and optional follow-up rewriting
-    → local MiniLM query embedding → top-3 cosine-similarity retrieval
-    → local Ollama answer generation → response and citation validation
-    → answer, refusal, or verification fallback
+The system has three connected flows: preparing knowledge, answering questions, and recording knowledge gaps.
 
-Insufficient evidence → unanswered_questions table → knowledge-gap review page
+```mermaid
+flowchart TB
+    subgraph preparation["1. Prepare the knowledge index"]
+        direction TB
+        raw["Raw synthetic EKOs"]
+        eligible["Validate and filter eligible records"]
+        ready["Search-ready EKOs"]
+        embeddings["Generate corpus embeddings<br/>MiniLM via Hugging Face"]
+        index[("PostgreSQL + pgvector<br/>Knowledge search index")]
+        raw --> eligible --> ready --> embeddings --> index
+    end
+
+    subgraph answering["2. Answer a learner question"]
+        direction TB
+        chat["React chat interface"]
+        api["FastAPI · POST /ask"]
+        route{"Conversational routing"}
+        social["Greeting, help or scope response"]
+        rewrite["Resolve follow-up references<br/>when history is supplied"]
+        query["Embed the search question<br/>Local MiniLM"]
+        retrieve["Retrieve top 3 EKOs<br/>Cosine similarity + optional filters"]
+        found{"Evidence retrieved?"}
+        generate["Generate an evidence-based response<br/>Local Ollama / Qwen3"]
+        validate["Validate response and citations"]
+        result["Display answer, refusal<br/>or verification fallback"]
+        chat --> api --> route
+        route -->|"Social / out of scope"| social --> result
+        route -->|"Construction question"| rewrite --> query --> retrieve
+        retrieve --> found
+        found -->|"Yes"| generate --> validate --> result
+        found -->|"No: insufficient evidence"| result
+    end
+
+    subgraph gaps["3. Review knowledge gaps"]
+        direction TB
+        unanswered[("PostgreSQL<br/>unanswered_questions")]
+        review["React review page<br/>/unanswered_questions"]
+        unanswered -->|"Listing API"| review
+    end
+
+    index -.->|"Searchable evidence"| retrieve
+    result -->|"insufficient_evidence only"| unanswered
 ```
+
+Insufficient-evidence requests are saved before the API returns the response. Answered, conversational and validation-failure responses are not added to the knowledge-gap list.
+
+### Technology map
+
 
 | Component | Current implementation |
 | --- | --- |
@@ -44,6 +85,8 @@ Insufficient evidence → unanswered_questions table → knowledge-gap review pa
 | Knowledge-gap storage | PostgreSQL `unanswered_questions` |
 
 The API, RAG CLI and end-to-end evaluator use local inference. Separate embedding/retrieval utilities still use `RemoteEmbeddingModel`; the hosted clients in `backend/llm/llm_client.py` are not used by the current API. `LLM_PROVIDER` does not switch the API's generation provider.
+
+### Repository map
 
 | Location | Purpose |
 | --- | --- |
